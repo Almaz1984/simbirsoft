@@ -33,7 +33,7 @@ public class ElementaryTraining {
      * @return сумма новых трех чисел
      */
     public double complicatedAmount(int firstValue, int secondValue, int thirdValue) {
-        return firstValue * 2 + (secondValue - 3) + thirdValue * thirdValue;
+        return firstValue * 2 + (secondValue - 3) + Math.pow(thirdValue, 2);
     }
 
     /**
@@ -86,6 +86,7 @@ public class ElementaryTraining {
      */
     public int zeroEvenNumber(int value) {
         String textValue = String.valueOf(value);
+        StringBuilder stringBuilder = new StringBuilder(textValue);
         int result;
 
         if (value < 10 || textValue.length() > 5) {
@@ -93,7 +94,8 @@ public class ElementaryTraining {
         } else {
             for (int i = 0; i < textValue.length(); i++) {
                 if (textValue.charAt(i) % 2 == 0) {
-                    textValue = textValue.substring(0, i) + "0" + textValue.substring(i + 1);
+                    stringBuilder.replace(i, i+1, "0");
+                    textValue = stringBuilder.toString();
                 }
             }
             result = Integer.parseInt(textValue);

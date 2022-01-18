@@ -9,14 +9,14 @@ public class ArraysTraining {
      * @param valuesArray массив для сортировки
      */
     public int[] sort(int[] valuesArray) {
-        int temp;
+        int temporaryValue;
 
         for (int i = 0; i < valuesArray.length; i++) {
             for (int j = 0; j < valuesArray.length - 1; j++) {
                 if (valuesArray[j] > valuesArray[j + 1]) {
-                    temp = valuesArray[j + 1];
+                    temporaryValue = valuesArray[j + 1];
                     valuesArray[j + 1] = valuesArray[j];
-                    valuesArray[j] = temp;
+                    valuesArray[j] = temporaryValue;
                 }
             }
         }
@@ -55,12 +55,12 @@ public class ArraysTraining {
      * @return входящий массив в обратном порядке
      */
     public int[] reverse(int[] array) {
-        int tempValue;
+        int temporaryValue;
 
         for (int i = 0; i < array.length / 2; i++) {
-            tempValue = array[i];
+            temporaryValue = array[i];
             array[i] = array[array.length - i - 1];
-            array[array.length - i - 1] = tempValue;
+            array[array.length - i - 1] = temporaryValue;
         }
 
         return array;
@@ -105,10 +105,10 @@ public class ArraysTraining {
         int maxCount = 0;
         int counter;
 
-        for (int i : array) {
+        for (int comparedNumber  : array) {
             counter = 0;
-            for (int j : array) {
-                if (i == j) {
+            for (int numberFromComparableArray : array) {
+                if (comparedNumber == numberFromComparableArray) {
                     counter++;
                 }
                 if (counter > maxCount) maxCount = counter;
