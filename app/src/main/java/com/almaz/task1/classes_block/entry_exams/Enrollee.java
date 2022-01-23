@@ -1,0 +1,31 @@
+package com.almaz.task1.classes_block.entry_exams;
+
+import java.util.ArrayList;
+import java.util.Map;
+
+public class Enrollee extends Person {
+    private final ArrayList<String> examsSubjectsList;
+    private Map<String, Integer> examsScore;
+
+    public Enrollee(String firstName, String lastName) {
+        super(firstName, lastName);
+        this.examsSubjectsList = new ArrayList<>();
+    }
+
+    public void registerForEnroll(Faculty faculty) {
+        examsSubjectsList.clear();
+        examsSubjectsList.addAll(faculty.getExamsSubjectsList());
+    }
+
+    public ArrayList<String> getExamsSubjectsList() {
+        return this.examsSubjectsList;
+    }
+
+    public Map<String, Integer> getExamsScores() {
+        return this.examsScore;
+    }
+
+    public void setExamsScore(Map<String, Integer> examsScore) {
+        this.examsScore = examsScore;
+    }
+}
