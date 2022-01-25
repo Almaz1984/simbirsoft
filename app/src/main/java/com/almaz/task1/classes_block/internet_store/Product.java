@@ -1,5 +1,6 @@
 package com.almaz.task1.classes_block.internet_store;
 
+import androidx.annotation.NonNull;
 import java.util.Objects;
 
 public class Product {
@@ -38,5 +39,11 @@ public class Product {
     @Override
     public int hashCode() {
         return Objects.hash(name, price);
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return name;
     }
 }

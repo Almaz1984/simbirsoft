@@ -47,19 +47,21 @@ public class Store {
         return productsList;
     }
 
-    public void orderTheProduct(Customer customer, String productName) {
+    public void orderTheProduct(Customer customer, ArrayList<String> productNamesList) {
         if (blackList.contains(customer)) {
             System.out.println("Customer " + customer.getLastName() + " is blacklisted!");
             return;
         }
 
-        Product orderedProduct = productsList.stream()
-                .filter(product -> product.getName().equals(productName))
-                .findFirst().orElse(null);
-        if (orderedProduct != null) {
-            customersOrdersList.add(new Order(orderedProduct.getName(), orderedProduct.getPrice(), customer.getId()));
+        ArrayList<Product> orderedProducts = productsList.stream()
+                .filter(product -> productNamesList.contains(product.getName())).
+                        collect(Collectors.toCollection(ArrayList::new));
+        if (orderedProducts.size() > 0) {
+            customersOrdersList.add(new Order(orderedProducts,
+                    orderedProducts.stream().mapToDouble(Product::getPrice).sum(),
+                    customer.getId()));
         } else {
-            System.out.println("The product " + productName + " is not in the store. Sorry.");
+            System.out.println("The products " + productNamesList + " is not in the store. Sorry.");
         }
 
     }

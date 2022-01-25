@@ -1,5 +1,15 @@
 package com.almaz.task1.classes_block.internet_store;
 
+import java.util.ArrayList;
+
+    /*
+      VII
+
+      Задача на взаимодействие между классами. Разработать систему «Интернет-магазин».
+      Товаровед добавляет информацию о Товаре. Клиент делает и оплачивает Заказ на Товары.
+      Товаровед регистрирует Продажу и может занести неплательщика в «черный список».
+     */
+
 public class Customer extends Person {
     private int id;
     private double accountBalance;
@@ -31,7 +41,7 @@ public class Customer extends Person {
         store.orderProccessing(this);
     }
 
-    public void buyProduct(Store store, String productName) {
-        store.orderTheProduct(this, productName);
+    public void buyProduct(Store store, ArrayList<String> productNamesList) {
+        store.orderTheProduct(this, productNamesList);
     }
 }

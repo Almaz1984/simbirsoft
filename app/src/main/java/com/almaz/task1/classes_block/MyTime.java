@@ -1,6 +1,6 @@
 package com.almaz.task1.classes_block;
 
- /*
+    /*
       IV
 
       Составить описание класса для представления времени.
@@ -29,7 +29,7 @@ public class MyTime {
     }
 
     public void setHour(int hour) {
-        if ((hour < 0) || (hour >= HOURS_IN_DAY)) {
+        if (hour < 0 || hour >= HOURS_IN_DAY) {
             throw new IllegalArgumentException();
         }
         this.hour = hour;
@@ -40,14 +40,14 @@ public class MyTime {
     }
 
     public void setMinute(int minute) {
-        if ((minute < 0) || (minute >= MINUTES_IN_HOUR)) {
+        if (minute < 0 || minute >= MINUTES_IN_HOUR) {
             throw new IllegalArgumentException();
         }
         this.minute = minute;
     }
 
     public int getSecond() {
-        if ((second < 0) || (second >= SECONDS_IN_MINUTE)) {
+        if (second < 0 || second >= SECONDS_IN_MINUTE) {
             throw new IllegalArgumentException();
         }
         return second;
@@ -58,7 +58,7 @@ public class MyTime {
     }
 
     public void addSecond(int second) {
-        if ((getSecond() + second) >= SECONDS_IN_MINUTE) {
+        if (getSecond() + second >= SECONDS_IN_MINUTE) {
             addMinute((getSecond() + second) / SECONDS_IN_MINUTE);
             setSecond((getSecond() + second) % SECONDS_IN_MINUTE);
         } else {
@@ -68,7 +68,7 @@ public class MyTime {
     }
 
     public void addMinute(int minute) {
-        if ((getMinute() + minute) >= MINUTES_IN_HOUR) {
+        if (getMinute() + minute >= MINUTES_IN_HOUR) {
             addHour((getMinute() + minute) / MINUTES_IN_HOUR);
             setMinute((getMinute() + minute) % MINUTES_IN_HOUR);
         } else {

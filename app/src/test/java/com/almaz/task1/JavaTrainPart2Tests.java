@@ -104,13 +104,13 @@ public class JavaTrainPart2Tests {
     @Test
     public void dinamicArrayTest() {
         DinamicArray dinamicArray = new DinamicArray(30);
-        dinamicArray.fillArrayRandomNumbers();
+        dinamicArray.fillArrayWithRandomNumbers();
         System.out.println("\nBefore mix:");
         dinamicArray.printArray();
-        dinamicArray.mixArrayRandom();
+        dinamicArray.mixArray();
         System.out.println("\nAfter mix:");
         dinamicArray.printArray();
-        System.out.println("\nItem count 5:" + dinamicArray.getItemCount(5));
+        System.out.println("\nItem count 5:" + dinamicArray.getSpecificItemCount(5));
 
     }
 
@@ -205,16 +205,16 @@ public class JavaTrainPart2Tests {
         salesman.addProductToStore(amazonStore, new Product("Honor magicbook pro ", 70000));
 
         System.out.println("");
-        customerIvanov.buyProduct(amazonStore, "Iphone 13");
-        customerIvanov.buyProduct(amazonStore, "Airpods pro");
-        customerIvanov.buyProduct(amazonStore, "Airpods");
+        customerIvanov.buyProduct(amazonStore, new ArrayList<>(Arrays.asList("Iphone 13")));
+        customerIvanov.buyProduct(amazonStore, new ArrayList<>(Arrays.asList("Airpods pro")));
+        customerIvanov.buyProduct(amazonStore, new ArrayList<>(Arrays.asList("Airpods")));
         customerIvanov.payForOrder(amazonStore);
         salesman.checkOrders(amazonStore, customerIvanov);
-        customerIvanov.buyProduct(amazonStore, "Airpods");
+        customerIvanov.buyProduct(amazonStore, new ArrayList<>(Arrays.asList("Airpods")));
 
         System.out.println("");
-        customerPetrov.buyProduct(amazonStore, "Asus notebook");
-        customerPetrov.buyProduct(amazonStore, "Iphone 13");
+        customerPetrov.buyProduct(amazonStore, new ArrayList<>(Arrays.asList("Asus notebook")));
+        customerPetrov.buyProduct(amazonStore, new ArrayList<>(Arrays.asList("Iphone 13", "Airpods pro")));
         customerPetrov.payForOrder(amazonStore);
         salesman.checkOrders(amazonStore, customerPetrov);
 

@@ -31,7 +31,7 @@ public class CollectionsBlock<T extends Comparable> {
     public List<T> collectionTask0(@NonNull List<T> firstList, @NonNull List<T> secondList) {
         List<T> resultCollection = new ArrayList<T>();
 
-        if ((firstList == null) || (secondList == null)) {
+        if (firstList == null || secondList == null) {
             throw new NullPointerException("One of the arguments is null!");
         }
         resultCollection.addAll(firstList);
@@ -71,7 +71,7 @@ public class CollectionsBlock<T extends Comparable> {
      * @throws NullPointerException если один из параметров null
      */
     public boolean collectionTask2(@NonNull List<T> firstList, @NonNull List<T> secondList) {
-        if ((firstList == null) || (secondList == null)) {
+        if (firstList == null || secondList == null) {
             throw new NullPointerException("One of the arguments is null");
         }
         return firstList.containsAll(secondList) && secondList.containsAll(firstList);
@@ -92,8 +92,31 @@ public class CollectionsBlock<T extends Comparable> {
         if (inputList == null) {
             throw new NullPointerException("Argument is null!");
         }
-        Collections.rotate(inputList, n);
-        return inputList;
+
+        if (n == 0 || inputList.size() == 0) {
+            return inputList;
+        }
+
+        List<T> tempList = new ArrayList<>(inputList);
+        int size = tempList.size();
+        T temperaryValue;
+
+        if (n > 0) {
+            for (int i = 0; i < n; i++) {
+                temperaryValue = tempList.get(size - 1);
+                tempList.remove(size - 1);
+                tempList.add(0, temperaryValue);
+            }
+        }
+        if (n < 0) {
+            for (int i = size-1; i >0; i--) {
+                temperaryValue = tempList.get(0);
+                tempList.remove(0);
+                tempList.add(size-1, temperaryValue);
+            }
+        }
+
+        return tempList;
     }
 
     /**
@@ -108,7 +131,7 @@ public class CollectionsBlock<T extends Comparable> {
      */
     public List<String> collectionTask4(@NonNull List<String> inputList, @NonNull String a,
                                         @NonNull String b) {
-        if ((inputList == null) || (a == null) || (b == null)) {
+        if (inputList == null || a == null || b == null) {
             throw new NullPointerException("One of the arguments is null!");
         }
         return inputList.stream()

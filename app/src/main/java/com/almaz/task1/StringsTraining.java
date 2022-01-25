@@ -50,11 +50,11 @@ public class StringsTraining {
     public int[] getArrayLastSymbol(String text) {
         ArrayList<Integer> listLastSymbol = new ArrayList<>();
         int[] arrayLastSymbol;
-        char letter;
 
         if (text.length() <= 0) {
             arrayLastSymbol = new int[]{};
         } else {
+            char letter;
             letter = text.charAt(text.length() - 1);
             for (int i = 0; i < text.length() - 1; i++) {
                 if (letter == text.charAt(i)) {
@@ -111,7 +111,7 @@ public class StringsTraining {
         for (int i = 0; i < text.length(); i++) {
             if (Character.isDigit(text.charAt(i))) {
                 digit = Character.getNumericValue(text.charAt(i));
-                stringBuilder.append((numerals.get(digit)));
+                stringBuilder.append(numerals.get(digit));
             } else stringBuilder.append(text.charAt(i));
         }
 

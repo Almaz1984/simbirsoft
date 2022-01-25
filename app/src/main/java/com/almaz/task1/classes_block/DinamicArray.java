@@ -3,7 +3,7 @@ package com.almaz.task1.classes_block;
 import java.util.ArrayList;
 import java.util.Random;
 
-/*
+    /*
       II
 
       Создать класс, содержащий динамический массив и количество элементов в нем.
@@ -14,6 +14,7 @@ import java.util.Random;
      */
 
 public class DinamicArray {
+    static final int BOUND = 10;
     ArrayList<Integer> array;
     int size;
 
@@ -22,15 +23,15 @@ public class DinamicArray {
         array = new ArrayList<>(size);
     }
 
-    public void fillArrayRandomNumbers() {
+    public void fillArrayWithRandomNumbers() {
         Random random = new Random();
 
         for (int i = 0; i < size; i++) {
-            array.add(i, random.nextInt(10));
+            array.add(i, random.nextInt(BOUND));
         }
     }
 
-    public void mixArrayRandom() {
+    public void mixArray() {
         int tempValue;
         int randomIndex;
         int currentIndex;
@@ -44,7 +45,7 @@ public class DinamicArray {
         }
     }
 
-    public int getItemCount(int item) {
+    public int getSpecificItemCount(int item) {
         int count = 0;
 
         for (int arrayValue : array) {

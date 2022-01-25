@@ -2,10 +2,11 @@ package com.almaz.task1;
 
 public class PracticeBlock {
     /*
-      Создать класс с двумя переменными. Добавить функцию вывода на экран
-      и функцию изменения этих переменных. Добавить функцию, которая находит
-      сумму значений этих переменных, и функцию, которая находит наибольшее
-      значение из этих двух переменных.
+      Написать простое лямбда-выражение в переменной myClosure, лямбда-выражение должно выводить
+      в консоль фразу "I love Java". Вызвать это лямбда-выражение. Далее написать функцию, которая
+      будет запускать заданное лямбда-выражение заданное количество раз. Объявить функцию так:
+      public void repeatTask (int times, Runnable task). Функция должна запускать times раз
+      лямбда-выражение task . Используйте эту функцию для печати "I love Java" 10 раз.
      */
 
     public static class Lambda {
@@ -48,26 +49,30 @@ public class PracticeBlock {
         public static void moveByDirectionList(Directions[] directionArray) {
             Point currentPoint = new Point(0, 0);
             for (Directions direction : directionArray) {
-                changeCoordinate(currentPoint, direction);
+                currentPoint = changeCoordinate(currentPoint, direction);
                 System.out.println("x:" + currentPoint.getX() + " y:" + currentPoint.getY());
             }
         }
 
-        public static void changeCoordinate(Point currentPoint, Directions direction) {
+        public static Point changeCoordinate(Point currentPoint, Directions direction) {
+            Point newPoint = new Point(currentPoint.getX(), currentPoint.getY());
+
             switch (direction) {
                 case UP:
-                    currentPoint.setY(currentPoint.getY() + 1);
+                    newPoint.setY(currentPoint.getY() + 1);
                     break;
                 case DOWN:
-                    currentPoint.setY(currentPoint.getY() - 1);
+                    newPoint.setY(currentPoint.getY() - 1);
                     break;
                 case LEFT:
-                    currentPoint.setX(currentPoint.getX() - 1);
+                    newPoint.setX(currentPoint.getX() - 1);
                     break;
                 case RIGHT:
-                    currentPoint.setX(currentPoint.getX() + 1);
+                    newPoint.setX(currentPoint.getX() + 1);
                     break;
             }
+
+            return  newPoint;
         }
 
         public static class Point {

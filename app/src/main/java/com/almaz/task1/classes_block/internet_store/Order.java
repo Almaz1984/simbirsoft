@@ -1,15 +1,17 @@
 package com.almaz.task1.classes_block.internet_store;
 
 import androidx.annotation.NonNull;
+import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 public class Order {
-    private String productName;
+    private ArrayList<Product> productsList;
     private int customerId;
     private boolean payment;
     private double price;
 
-    public Order(String productName, double price, int customerId) {
-        this.productName = productName;
+    public Order(ArrayList<Product> productsList, double price, int customerId) {
+        this.productsList = productsList;
         this.customerId = customerId;
         this.payment = false;
         this.price = price;
@@ -31,12 +33,12 @@ public class Order {
         this.payment = payment;
     }
 
-    public String getProductName() {
-        return productName;
+    public ArrayList<Product> getProductsList() {
+        return productsList;
     }
 
-    public void setProductName(String productName) {
-        this.productName = productName;
+    public void setProductsList(ArrayList<Product> productsList) {
+        this.productsList = productsList;
     }
 
     public int getCustomerId() {
@@ -50,6 +52,7 @@ public class Order {
     @NonNull
     @Override
     public String toString() {
-        return this.getProductName();
+        return this.productsList.stream().map(Object::toString).
+                collect(Collectors.joining("\n"));
     }
 }
