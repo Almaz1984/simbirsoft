@@ -1,18 +1,19 @@
 package com.almaz.task1;
 
-import com.almaz.task1.classes_block.DinamicArray;
-import com.almaz.task1.classes_block.MyTime;
-import com.almaz.task1.classes_block.entry_exams.Enrollee;
-import com.almaz.task1.classes_block.entry_exams.Faculty;
-import com.almaz.task1.classes_block.entry_exams.Teacher;
-import com.almaz.task1.classes_block.internet_store.Customer;
-import com.almaz.task1.classes_block.internet_store.Product;
-import com.almaz.task1.classes_block.internet_store.Store;
-import com.almaz.task1.classes_block.subscriber_task.Subscriber;
-import com.almaz.task1.classes_block.subscriber_task.SubscribersList;
-import com.almaz.task1.classes_block.triangle.Triangle;
-import com.almaz.task1.students_task.Student;
-import com.almaz.task1.students_task.StudentsList;
+import com.almaz.task1.java_training.part_2.classes_block.DinamicArray;
+import com.almaz.task1.java_training.part_2.classes_block.MyTime;
+import com.almaz.task1.java_training.part_2.classes_block.entry_exams.Enrollee;
+import com.almaz.task1.java_training.part_2.classes_block.entry_exams.Faculty;
+import com.almaz.task1.java_training.part_2.classes_block.entry_exams.Teacher;
+import com.almaz.task1.java_training.part_2.classes_block.internet_store.Customer;
+import com.almaz.task1.java_training.part_2.classes_block.internet_store.Product;
+import com.almaz.task1.java_training.part_2.classes_block.internet_store.Store;
+import com.almaz.task1.java_training.part_2.classes_block.subscriber_task.Subscriber;
+import com.almaz.task1.java_training.part_2.classes_block.subscriber_task.SubscribersList;
+import com.almaz.task1.java_training.part_2.classes_block.triangle.Triangle;
+import com.almaz.task1.java_training.part_2.students_task.Student;
+import com.almaz.task1.java_training.part_2.students_task.StudentsList;
+import com.almaz.task1.java_training.part_2.PracticeBlock;
 
 import org.junit.Test;
 
