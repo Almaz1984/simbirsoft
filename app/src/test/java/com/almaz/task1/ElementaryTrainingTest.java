@@ -2,6 +2,8 @@ package com.almaz.task1;
 
 import static org.junit.Assert.assertEquals;
 
+import com.almaz.task1.java_training.part_1.ElementaryTraining;
+
 import org.junit.BeforeClass;
 import org.junit.Test;
 
