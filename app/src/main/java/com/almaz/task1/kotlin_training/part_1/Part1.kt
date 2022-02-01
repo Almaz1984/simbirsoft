@@ -1,7 +1,8 @@
 package com.almaz.task1.kotlin_training.part_1
 
 import android.util.Log
-import com.almaz.task1.TAG
+
+const val TAG = "MAIN_ACTIVITY_PART_1"
 
 object Part1 {
     fun run() {
