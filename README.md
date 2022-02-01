@@ -299,3 +299,713 @@
 10. Внутри функции `auth` вызвать метод коллбека `authSuccess` и переданный `updateCache`, если проверка возраста пользователя произошла без ошибки. В случае получения ошибки вызвать `authFailed`.
 11. Реализовать изолированный класс `Action` и его наследников – `Registration`, `Login` и `Logout`. `Login` должен принимать в качестве параметра экземпляр класса User. 
 12. Реализовать метод `doAction`, принимающий экземпляр класса `Action`. В зависимости от переданного действия выводить в лог текст, к примеру “Auth started”. Для действия `Login` вызывать метод `auth`.
+
+---
+## VI. Верстка
+---
+### Теоретическая часть
+
+В случае если по ссылке встречается пошаговый гайд - рекомендуется его выполнить в отдельном проекте.
+
+**1. Начало разработки под Android**
++ [Начало разаработки](https://developer.android.com/training/index.html) **(\*\*\*\*)**
+
+**2. Верстка**
++ [Уроки верстки из курсов](http://startandroid.ru/ru/uroki/vse-uroki-spiskom.html) **(\*\*)**
++ [Создание макетов в XML и View groups](https://developer.android.com/guide/topics/ui/declaring-layout.html) **(\*\*\*)**
+
+**3. Типы layout'ов**
++ [Frame Layout](http://developer.alexanderklimov.ru/android/layout/framelayout.php) **(\*\*\*\*)**
++ [Linear Layout](https://developer.android.com/guide/topics/ui/layout/linear.html) **(\*\*\*\*)**
++ [Relative Layout](https://developer.android.com/guide/topics/ui/layout/relative.html) (если есть возможность, лучше использовать Constraint) **(\*\*\*\*)**
+
+**4. Splash Screen**
++ [Как правильно реализовать](https://habr.com/ru/post/345380/) **(\*\*\*\*)**
+
+**5. BottomAppBar**
++ [Обзор](https://developer.android.com/reference/com/google/android/material/bottomappbar/BottomAppBar) **(\*\*\*\*)**
+
+**6. App Bar**
++ [Обзор](https://developer.android.com/training/appbar) **(\*\*\*\*)**
+
+**7. Constraint Layout**
++ [Документация](https://developer.android.com/reference/android/support/constraint/ConstraintLayout.html) **(\*\*\*\*)**
++ [Работа с различными свойствами](https://habrahabr.ru/company/touchinstinct/blog/326814/) **(\*\*\*\*)**
+
+**8. Coordinator Layout**
++ [Документация](https://developer.android.com/jetpack/androidx/releases/coordinatorlayout?hl=ru) **(\*\*\*\*)**
++ [Особенности использования](https://blog.mindorks.com/using-coordinator-layout-in-android) **(\*\*\*\*)**
+
+**9. Ресурсы**
++ [Обзор](https://developer.android.com/guide/topics/resources/providing-resources) **(\*\*\*\*)**
++ [Видео-лекция Яндекса: Школа мобильной разработки – MyFirstApp (Часть 1) Роман Григорьев](https://youtu.be/jVwGU3UJVPc) Описывает ресурсы андроид приложения, а так же различие релизной, дебажной сборки и signing config **(\*\*)**
++ [Локализация](https://developer.android.com/guide/topics/resources/localization) **(\*\*)**
++ [Типы ресурсов](https://developer.android.com/guide/topics/resources/available-resources) **(\*\*)**
++ [Шрифты в XML](https://developer.android.com/guide/topics/ui/look-and-feel/fonts-in-xml.html) **(\*\*)**
++ [Загружаемые шрифты](https://developer.android.com/guide/topics/ui/look-and-feel/downloadable-fonts.html) **(\*\*)**
++ [Поддержка разных экранов](https://developer.android.com/guide/practices/screens_support.html) **(\*\*)**
++ [Zeplin](https://habrahabr.ru/company/uteam/blog/315542/) **(\*\*\*)**
+ 
+**10. Codelabs**
++ [Your first interactive UI](https://codelabs.developers.google.com/codelabs/android-training-layout-editor-part-a/index.html?index=..%2F..%2Fandroid-training#0) **(\*\*)**
++ [The layout editor](https://codelabs.developers.google.com/codelabs/android-training-layout-editor-part-b/index.html?index=..%2F..%2Fandroid-training#0) **(\*\*)**
++ [Text and scrolling views](https://codelabs.developers.google.com/codelabs/android-training-text-and-scrolling-views/index.html?index=..%2F..%2Fandroid-training#0) **(\*\*)**
++ [Drawables, styles, and themes](https://codelabs.developers.google.com/codelabs/android-training-drawables-styles-and-themes/index.html?index=..%2F..%2Fandroid-training#0) **(\*\*)**
++ [Clickable images](https://codelabs.developers.google.com/codelabs/android-training-clickable-images/index.html?index=..%2F..%2Fandroid-training#0) **(\*\*)**
++ [Input controls](https://codelabs.developers.google.com/codelabs/android-training-input-controls/index.html?index=..%2F..%2Fandroid-training#0) **(\*\*)**
++ [Menus and pickers](https://codelabs.developers.google.com/codelabs/android-training-menus-and-pickers/index.html?index=..%2F..%2Fandroid-training#0) **(\*\*)**
++ [User navigation](https://codelabs.developers.google.com/codelabs/android-training-provide-user-navigation/index.html?index=..%2F..%2Fandroid-training#0) **(\*\*)**
++ [Adaptive layouts](https://codelabs.developers.google.com/codelabs/android-training-adaptive-layouts/index.html?index=..%2F..%2Fandroid-training#0) **(\*\*)**
+
+
+**Важно** В компании при разработке любого мобильного приложения считается правилом хорошего тона придерживаться нефункциональных требований, описанных в [данной статье](http://kb.simbirsoft/nonfunctional-support/)
+
+### Практическое задание
+Работа должна производится в созданном ранее проекте из блока I.
+
+Все изменения должны быть закоммичены, а названия коммитов должны коротко и исчерпывающе описывать содержащие изменения. Каждый коммит должен быть рабочим, отправка некомпилирующегося кода недопустима. Для работы над этим заданием необходимо переключится на ветку `layouts` и все изменения пушить в нее. После завершения работы над задачей в gitlab необходимо создать merge request в ветку `develop`.
+Код должен быть читабельным и написан согласно code-style. В системе PS также необходимо создать созвучную задачу, в которую после завершения будет залогировано время.
+
+1. Сделать так, чтобы на домашнем экране Android отображалась иконка и название приложения "Хочу помочь". Ресурсы иконок [тут](https://zpl.io/2jkoMOp).
+2. Реализовать Splash Screen согласно [макету](https://zpl.io/2jlk3Mm).
+3. Реализовать экран "Профиль" согласно [макету](https://zpl.io/b6lQpZq).
+ - Экран "Профиль" необходимо отображать после Splash Screen. По нажатию стрелки назад, приложение закрывается.
+ - Необходимо реализовать нижний элемент навигации с помощью стандартного `BottomNavigationView`. Пункт "Помочь" визуально не должен отличаться от остальных четырех. Размеры иконок оставить стандартные для `BottomNavigationView` - 24dp.
+ - В нижнем меню навигации по-умолчанию должен быть выбран пункт "Профиль".
+ - Верстка должна быть реализована в xml.
+ - Верстка должна быть выполнена с учетом "pixel perfect" - когда все элементы дизайна расположены и имеют размеры абсолютно идентичные макету для экрана с теми же размерами, что и макет, и адекватно масштабироваться для других размеров и разрешений.
+ - Все переиспользуемые размеры в xml должны быть вынесены в dimes, цвета в colors, а строки в strings.
+ - Никаких "магических чисел", все должно иметь понятные названия.
+4. Реализовать поведение toolbar-a на экране профиля при скролле, используя CoordinatorLayout.
+ - При прокрутке вниз toolbar вместе с изображением профиля должен постепенно скрываться.
+ - При прокрутке наверх до конца toolbar вместе с изображением профиля должен полностью отображаться.
+ - При полной прокрутке вниз и последующей прокрутке наверх сразу должен отобразиться toolbar без изображения профиля. По мере скролла наверх изображение профиля должно появиться.
+5. Подключить статические анализаторы кода и исправить выявленные замечания
+ - Подключить через gradle [ktlint](https://ktlint.github.io/)
+ - Установить плагин [SonarLint](https://www.sonarlint.org/)
+ - Запустить и исправить выявленные [lint](https://developer.android.com/studio/write/lint) замечания
+ - Запустить и исправить выявленные ktlint замечания
+ - Запустить и исправить выявленные SonarLint замечания
+
+---
+## VII. Android OS. Activity. Fragments
+---
+### Теоретическая часть
+
+**1. Android OS** 
++ [История Android](https://www.android.com/history/#/marshmallow) **(\*\*)**
++ [Архитектура Android](https://source.android.com/devices/architecture/) **(\*\*)**
+
+**2. Application**  
++ [Application](https://developer.android.com/reference/android/app/Application.html)  **(\*\*\*)**
++ [Context](https://web.archive.org/web/20150329210012/https://possiblemobile.com/2013/06/context/)  **(\*\*\*)**
++ [Файл Manifest](https://developer.android.com/guide/topics/manifest/manifest-intro.html) **(\*\*\*\*)**
+
+**3. Activity**  
++ [Activity - основы](https://developer.android.com/guide/components/activities/intro-activities) **(\*\*\*\*)**
++ [Управление жизненным циклом Activity](https://developer.android.com/guide/components/activities/activity-lifecycle) **(\*\*\*\*)**
++ [Обработка изменений конфигурации экрана](https://developer.android.com/guide/topics/resources/runtime-changes.html) **(\*\*\*\*)**
++ [Task и Back Stack](https://habrahabr.ru/post/186434/) **(\*\*)**
++ [Передача данных между Activity. Обзор](https://developer.android.com/guide/components/activities/parcelables-and-bundles.html) **(\*\*\*\*)**
++ [Передача данных между Activity. Интерфейс Parcelable](https://metanit.com/java/android/2.13.php) **(\*\*\*\*)**
++ [Интерфейс Serializable](https://developer.android.com/reference/java/io/Serializable) **(\*\*)**
++ [Сравнение Parcelable и Serializable](https://android.jlelse.eu/parcelable-vs-serializable-6a2556d51538) **(\*\*)**
+
+**4. Fragment**  
++ [Fragment - основы](https://developer.android.com/guide/components/fragments.html) **(\*\*\*\*)**
++ [Диалоговые окна](https://developer.android.com/guide/topics/ui/dialogs.html) **(\*\*\*\*)**
++ [Передача данных между Fragment](https://developer.android.com/training/basics/fragments/communicating) **(\*\*\*\*)**
++ [Target fragment](https://habrahabr.ru/post/259805/) **(\*\*)**
++ [Видео-лекция Яндекса: Школа мобильной разработки – Fragments (Часть 1). Денис Загаевский](https://youtu.be/3VXPsCUYioM?list=PLQC2_0cDcSKBNCR8UWeElzCUuFkXASduz) Лектор весьма неплохо описывает концепцию фрагментов и как их использовать **(\*\*)**  
+
+**5. SearchView**
++ [Обзор](https://developer.android.com/guide/topics/search) **(\*\*\*\*)**
+
+**6. ViewPager2**
++ [Обзор](https://developer.android.com/guide/navigation/navigation-swipe-view-2) **(\*\*\*\*)**
+
+**7. Списки**
++ [ListView](http://developer.alexanderklimov.ru/android/views/listview.php) **(\*\*)**
++ [RecyclerView и Adapter](https://developer.android.com/training/material/lists-cards.html) **(\*\*\*\*)**
++ [Видео-лекция Яндекса: Школа мобильной разработки – AdapterView. Владимир Тагаков](https://youtu.be/G35pcPv_tEA?list=PLQC2_0cDcSKBNCR8UWeElzCUuFkXASduz)  Лектор рассказывает про recycleView, желательно смотреть только после того, как появится уже некоторый опыт в создании компонентов RecyclerView **(\*\*)**
+
+**8. Работа со сторонними приложениями и permissions**  
++ [Run-time permissions](https://developer.android.com/training/permissions/requesting.html)**(\*\*\*\*)**
++ [Intent и фильтры](https://developer.android.com/guide/components/intents-filters.html?hl=ru)**(\*\*\*\*)**
++ [Взаимодействие с другими приложениями](https://developer.android.com/training/basics/intents/index.html)**(\*\*\*\*)**
++ [Получение фото с камеры](https://developer.android.com/training/camera/photobasics)**(\*\*\*\*)**
+
+**10. Codelabs**
++ [Activities and intents](https://codelabs.developers.google.com/codelabs/android-training-create-an-activity/index.html?index=..%2F..%2Fandroid-training#0) **(\*\*)**
++ [Activity lifecycle and state](https://codelabs.developers.google.com/codelabs/android-training-activity-lifecycle-and-state/index.html?index=..%2F..%2Fandroid-training#0) **(\*\*)**
++ [Implicit intents](https://codelabs.developers.google.com/codelabs/android-training-activity-with-implicit-intent/index.html?index=..%2F..%2Fandroid-training#0) **(\*\*)**
++ [RecyclerView](https://codelabs.developers.google.com/codelabs/android-training-create-recycler-view/index.html?index=..%2F..%2Fandroid-training#0) **(\*\*)**
++ [Fragments](https://codelabs.developers.google.com/codelabs/advanced-android-training-fragments/index.html?index=..%2F..advanced-android-training#0) **(\*\*)**
++ [Fragment communication](https://codelabs.developers.google.com/codelabs/advanced-android-training-fragment-communication/index.html?index=..%2F..advanced-android-training#0) **(\*\*)**
+
+
+### Практическое задание
+Работа должна производится в созданном ранее проекте.
+
+Все изменения должны быть закоммичены, а названия коммитов должны коротко и исчерпывающе описывать содержащие изменения. Каждый коммит должен быть рабочим, отправка некомпилирующегося кода недопустима. Для работы над этим заданием необходимо переключится на ветку `fragments` и все изменения пушить в нее. После завершения работы над задачей в gitlab необходимо создать merge request в ветку `develop`.
+Код должен быть читабельным и написан согласно code-style.
+
+1. Реализовать диалог согласно [макету](https://zpl.io/brkmRYX)
+ - Диалог необходимо открывать при нажатии на изображение пользователя на экране "Профиль". 
+ - По нажатию на кнопку "Выбрать фото" не должно ничего происходить.
+ - По нажатию на кнопку "Сделать снимок" необходимо запускать камеру устройства. Сделанное фото должно заменять текущее на экране профиля
+ - По нажатию на кнопку "Удалить" необходимо удалять текущее изображение пользователя на экране профиля
+2. Реализовать экран "Категории помощи" приложения согласно [макету](https://zpl.io/b6lYE9d).
+ - Стрелку назад верстать не надо.
+ - Экран "Категории помощи" необходимо отображать после Splash Screen. Переход на экран профиля теперь происходит при выборе пункта "Профиль" в нижнем меню.
+ - В нижнем меню навигации по-умолчанию должен быть выбран пункт "Помочь".
+ - Экран должен представлять из себя fragment с `RecyclerView`.
+3. Реализовать экран "Поиск" согласно [макету](https://zpl.io/bAGAPj8). Переход на этот экран осуществляется при выборе пункта "Поиск" в нижнем меню
+ - Экран необходимо построить с использованием `SearchView`,`ViewPager2` и фрагментов.
+ - У `SearchView` необходимо реализовать только верстку без логики.
+ - Необходимо реализовать возможность изменять выбранную вкладку перелистыванием с плавной анимацией. 
+ - В качестве названий для результатов необходимо использовать произвольные случайные строки.
+ - Данные для отображения результата необходимо генерировать случайным образом при каждом перелистывании `ViewPager2`.
+4. Запустить статические анализаторы кода (lint, ktlint, SonarLint) и исправить найденные замечания
+
+---
+## VIII. Структуры данных. Работа с файлами
+---
+### Теоретическая часть
+
+**1. Работа с файлами в java. Сериализация**  
++ [Потоки ввода-вывода](https://metanit.com/java/tutorial/6.1.php)  **(\*\*\*\*)**
++ [Закрытие потоков](https://metanit.com/java/tutorial/6.2.php)  **(\*\*\*\*)**
++ [Чтение и запись файлов. FileInputStream и FileOutputStream](https://metanit.com/java/tutorial/6.3.php)  **(\*\*\*\*)**
++ [Классы ByteArrayInputStream и ByteArrayOutputStream](https://metanit.com/java/tutorial/6.4.php)  **(\*\*)**
++ [Буферизуемые потоки. Классы BufferedInputStream и BufferedOuputStream](https://metanit.com/java/tutorial/6.5.php)  **(\*\*\*\*)**
++ [Чтение и запись текстовых файлов. FileReader и FileWriter](https://metanit.com/java/tutorial/6.8.php)  **(\*\*)**
++ [Буферизируемые символьные потоки. BufferedReader и BufferedWriter](https://metanit.com/java/tutorial/6.9.php)  **(\*\*)**
++ [Сериализация объектов](https://metanit.com/java/tutorial/6.10.php)  **(\*\*)**
++ [Класс File. Работа с файлами и каталогами](https://metanit.com/java/tutorial/6.11.php)  **(\*\*\*\*)**
++ [Работа с ZIP-архивами](https://metanit.com/java/tutorial/6.12.php)  **(\*\*)**
+
+**2. JSON**
++ [Понятие](https://ru.wikipedia.org/wiki/JSON)  **(\*\*\*\*)**
++ [Парсинг в Android](https://metanit.com/java/android/13.3.php)  **(\*\*\*\*)**
++ [Gson](https://habrahabr.ru/company/naumen/blog/228279/) **(\*\*\*\*)**
++ [Moshi](https://github.com/square/moshi?utm_source=android-arsenal.com&utm_medium=referral&utm_campaign=1682) **(\*)**
++ [Jackson](https://github.com/FasterXML/jackson-core?utm_source=android-arsenal.com&utm_medium=referral&utm_campaign=230) **(\*)**
+
+**3. Работа с файловой системой Android**  
++ [SharedPreferences](https://developer.android.com/training/basics/data-storage/shared-preferences.html?hl=ru#GetSharedPreferences) **(\*\*\*\*)**
++ [Настройки через Preferences](https://developer.android.com/guide/topics/ui/settings.html) **(\*\*)**
++ [Android data storage](https://developer.android.com/training/basics/data-storage/files.html) **(\*\*\*\*)**
++ [FileProvider](https://developer.android.com/reference/android/support/v4/content/FileProvider.html) **(\*\*\*)**
+
+**4. Работа с датой и временем**  
++ [Date, Calendar](http://developer.alexanderklimov.ru/android/java/date.php) **(\*\*\*\*)**
++ [Date в Java 8](http://www.baeldung.com/java-8-date-time-intro) **(\*\*\*\*)**
++ [Работа со временем в java ](https://habrahabr.ru/post/274811/) **(\*\*)**
+
+**5. DiffUtils**
++ [Обзор](https://medium.com/@iammert/using-diffutil-in-android-recyclerview-bdca8e4fbb00) **(\*\*\*\*)**
++ [ListAdapter](https://developer.android.com/reference/androidx/recyclerview/widget/ListAdapter.html?hl=en) **(\*\*\*\*)**
+
+**6. Codelabs**
++ [Shared preferences](https://codelabs.developers.google.com/codelabs/android-training-shared-preferences/index.html?index=..%2F..%2Fandroid-training#0) **(\*\*)**
++ [App settings](https://codelabs.developers.google.com/codelabs/android-training-adding-settings-to-app/index.html?index=..%2F..%2Fandroid-training#0) **(\*\*)**
+
+### Практическое задание
+Работа должна производится в созданном ранее проекте.
+
+Все изменения должны быть закоммичены, а названия коммитов должны коротко и исчерпывающе описывать содержащие изменения. Каждый коммит должен быть рабочим, отправка некомпилирующегося кода недопустима. Для работы над этим заданием необходимо переключится на ветку `data_structures` и все изменения пушить в нее. После завершения работы над задачей в gitlab необходимо создать merge request в ветку `develop`.
+Код должен быть читабельным и написан согласно code-style. Верстка экранов должна быть выполнена по принципу pixel-perfect.
+
+1. Создать task в PS с заголовком "VIII. Структуры данных" и взять ее в работу.
+2. Доработать логику диалога на экране "Профиль".
+ - По нажатию на кнопку "Выбрать фото" необходимо открывать галерею устройства. Выбранное в галерее фото должно заменять текущее на экране профиля
+3. Подключить к проекту [ThreeTenABP](https://github.com/JakeWharton/ThreeTenABP). Все операции с датой и временем должны быть реализованы через классы данной библиотеки.
+4. Сверстать экран "Новости" согласно [макету](https://zpl.io/brkm3we). Переход на этот экран осуществляется при выборе пункта "Новости" в нижнем меню. Экран содержит список благотворительных событий, относящихся к выбранным категориям.
+ - Одно событие может относиться сразу к нескольких категориям помощи.
+5. Сверстать экран "Фильтр" согласно [макету](https://zpl.io/2ZxPMeG). Переход на этот экран осуществляется при клике на иконку в правом верхнем углу экрана "Новости".
+ - На экране вместо фразы "Как вы хотите помочь?" необходимо отображать "Категории помощи" и ниже список всех возможных категорий (категории, которые отображаются на главном экране - дети, пожилые и тд).
+ - При смене категорий в фильтре обновлять список на экране "Новости" обязательно при помощи DiffUtils.
+6. Сверстать экран "Детальное описание события" согласно [макету](https://zpl.io/adA93Z5). Переход на этот экран осуществляется при выборе любого события из списка. Данный экран должен получить информацию о том, какое событие было выбрано на предыдущем шаге.
+7. Необходимо создать два json'а. Содержащих в себе массивы категорий и благотворительных событий. Информация об объектах должна быть достаточной для формирования отображений на экранах, а также для корректного разделения по категориям помощи. Каждый объект должен обладать уникальным (среди объектов своего типа) идентификатором. Проверить корректность созданных json-ов через [online-parser](http://json.parser.online.fr/). Записать их в 2 файла и поместить в папку assets проекта.
+8. Необходимо создать сущности соответствующие понятиям Категория и Событие.
+9. Создать класс, который будет читать созданные json из файлов, парсить их и преобразовывать в массивы.
+10. Наполнить экраны полученными данными.
+11. Запустить статические анализаторы кода (lint, ktlint, SonarLint) и исправить найденные замечания
+
+
+---
+## IX. Многопоточность
+---
+### Теоретическая часть
+
+**1. Базовые понятия**
++ [Многопоточность. Определение](https://ru.wikipedia.org/wiki/%D0%9C%D0%BD%D0%BE%D0%B3%D0%BE%D0%BF%D0%BE%D1%82%D0%BE%D1%87%D0%BD%D0%BE%D1%81%D1%82%D1%8C)  **(\*\*\*\*)**
++ [Мьютекс](https://ru.wikipedia.org/wiki/%D0%9C%D1%8C%D1%8E%D1%82%D0%B5%D0%BA%D1%81)  **(\*\*)**
++ [Семафор](https://ru.wikipedia.org/wiki/%D0%A1%D0%B5%D0%BC%D0%B0%D1%84%D0%BE%D1%80_(%D0%B8%D0%BD%D1%84%D0%BE%D1%80%D0%BC%D0%B0%D1%82%D0%B8%D0%BA%D0%B0))  **(\*\*)**
++ [Дэдлок](https://ru.wikipedia.org/wiki/Взаимная_блокировка)  **(\*\*\*)**
++ [Starvation and Livelock](https://docs.oracle.com/javase/tutorial/essential/concurrency/starvelive.html)  **(\*\*\*)**
++ [Атомарные операции](https://ru.wikipedia.org/wiki/%D0%90%D1%82%D0%BE%D0%BC%D0%B0%D1%80%D0%BD%D0%B0%D1%8F_%D0%BE%D0%BF%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D1%8F)  **(\*\*\*)**
++ [Atomic типы](http://java-online.ru/concurrent-atomic.xhtml)  **(\*\*\*)**
+
+**2. Многопоточность в java**
++ [Java Memory Model](https://youtu.be/iB2N8aqwtxc?list=WL) **(\*\*\*\*)**
++ [Thread](https://habrahabr.ru/post/164487/) **(\*\*\*\*)**
++ [Синхронизация потоков. Оператор synchronized](https://metanit.com/java/tutorial/8.3.php) **(\*\*\*\*)**
++ [Синхронизированные коллекции](https://habrahabr.ru/company/luxoft/blog/157273/)  **(\*\*\*)**
++ [Volatile поля](http://tutorials.jenkov.com/java-concurrency/volatile.html)  **(\*\*\*)**
++ [Executors](http://winterbe.com/posts/2015/04/07/java8-concurrency-tutorial-thread-executor-examples/) **(\*\*\*\*)**
+
+**3. Фоновая работа в Android**
++ [Looper, Handler, and HandlerThread](https://blog.mindorks.com/android-core-looper-handler-and-handlerthread-bd54d69fe91a). [Видео](https://www.youtube.com/watch?v=gDvjU8HSuYE)  **(\*\*\*)**
+
++ [Loader (Deprecated)](https://habrahabr.ru/company/e-Legion/blog/265405/) **(\*\*)**
++ [AsyncTask (Deprecated)](https://developer.android.com/reference/android/os/AsyncTask.html)  **(\*\*\*)**
++ [Видео-лекция Яндекса: Школа мобильной разработки – Background. Алексей Макаров](https://youtu.be/yyZh3ME7Jyk?list=PLQC2_0cDcSKBNCR8UWeElzCUuFkXASduz) обозревает инструменты для взаимодействия с потоками в андроиде НО Нужно учитывать, что asyncTask и Loader помечены как deprecated **(\*\*)**
+		
+**4. Service**
++ [Service - основы](https://developer.android.com/guide/components/services.html)  **(\*\*\*\*)**
++ [IntentService](http://developer.alexanderklimov.ru/android/theory/intentservice.php)  **(\*\*\*\*)**
++ [Job Scheduler](http://ticketmastermobilestudio.com/blog/how-to-use-androids-job-scheduler) **(\*\*\*\*)**
++ [Work Manager](https://developer.android.com/topic/libraries/architecture/workmanager) **(\*\*)**
++ [Background Execution Limits Android 8.0+](https://developer.android.com/about/versions/oreo/background.html) **(\*\*)**
++ [Видео-лекция Яндекса: Школа мобильной разработки – Service & Broadcasts. Алексей Макаров](https://youtu.be/rxQYPxHkxi0?list=PLQC2_0cDcSKBNCR8UWeElzCUuFkXASduz) Лектор рассказывает про сервисы, их сферу применения, какие флаги к ним применяются и как они работают достаточно подробно **(\*\*)**  
+
+**5. Codelabs**
++ [JobScheduler](https://codelabs.developers.google.com/codelabs/android-training-job-scheduler/index.html?index=..%2F..%2Fandroid-training#0) **(\*\*)**
++ [WorkManager](https://codelabs.developers.google.com/codelabs/android-workmanager/index.html?index=..%2F..index#0) **(\*\*)**
++ [AsyncTask](https://codelabs.developers.google.com/codelabs/android-training-create-asynctask/index.html?index=..%2F..%2Fandroid-training#0) **(\*\*)**
+
+
+
+### Практическое задание
+Работа должна производится в созданном ранее проекте.
+
+Все изменения должны быть закоммичены, а названия коммитов должны коротко и исчерпывающе описывать содержащие изменения. Каждый коммит должен быть рабочим, отправка некомпилирующегося кода недопустима. Для работы над этим заданием необходимо переключится на ветку `concurrency` и все изменения пушить в нее. После завершения работы над задачей в gitlab необходимо создать merge request в ветку `develop`.
+Код должен быть читабельным и написан согласно code-style.
+
+1. Создать task в PS с заголовком "IX. Многопоточность" и взять ее в работу.
+2. В рамках предыдущего задания было реализовано чтение из файла. Реализовать чтение из файла и парсинг в background-потоке каждым из предложенных способов. С помощью AsyncTask, Executor, IntentService. При повороте экрана не должно происходить повторное чтение из файла.
+3. Перед чтением данных остановить рабочий background-поток (Thread.sleep(5000)), для показательного отображения Progress Indicator (имитация запроса к сети).
+4. Реализовать Progress Indicator на экранах "Категории помощи" и "Новости". Индикатор должен показываться с момента запроса данных до момента их отображения на экране. **Внимание!** Все действия c UI должны совершаться в главном потоке. 
+5. Для сохранения и восстановления данных при смене конфигурации использовать savedInstanceState.
+6. Запустить статические анализаторы кода (lint, ktlint, SonarLint) и исправить найденные замечания
+
+---
+## X. Реактивное программирование
+---
+### Теоретическая часть
+
+**1. Понятие реактивности**
++ [Концепция](https://habrahabr.ru/post/279715/)  **(\*\*\*\*)**
++ [RxMarbles](http://rxmarbles.com/)  **(\*\*\*)**
+
+**2. RxJava**
++ [RxJava](https://github.com/ReactiveX/RxJava)  **(\*\*\*\*)**
++ [reactivex](http://reactivex.io/)  **(\*\*)**
++ [Введение в RxJava: Почему Rx?](https://habrahabr.ru/post/269417/)  **(\*\*)**
++ [Подробно о различиях между subscribeOn и observeOn](https://proandroiddev.com/understanding-rxjava-subscribeon-and-observeon-744b0c6a41ea)  **(\*\*)**
+
+**3. Android расширения**
++ [RxAndroid (позволяет легко переключаться на main поток)](https://github.com/ReactiveX/RxAndroid)  **(\*\*\*)**
++ [RxBinding](https://github.com/JakeWharton/RxBinding)  **(\*\*\*)**
++ [Использование RxJava совместно с RxBinding](https://github.com/codepath/android_guides/wiki/RxJava-and-RxBinding)  **(\*\*\*)**
+
+
+### Практическое задание
+Работа должна производится в созданном ранее проекте.
+
+**Важно! Для пункта 2 используется отдельный проект, указанный в задании**
+
+Все изменения должны быть закоммичены, а названия коммитов должны коротко и исчерпывающе описывать содержащие изменения. Каждый коммит должен быть рабочим, отправка некомпилирующегося кода недопустима. Для работы над этим заданием необходимо переключиться на ветку `rx_java` и все изменения пушить в нее. После завершения работы над задачей в gitlab необходимо создать merge request в ветку `develop`.
+Код должен быть читабельным и написан согласно code-style. В системе PS также необходимо создать созвучную задачу, в которую после завершения будет залогировано время.
+
+1. Создать task в PS с заголовком "X. Реактивное программирование" и взять ее в работу.
+2. Клонировать [проект](http://gitlab.simbirsoft/artur.korchagin/rxtraining) и реализовать все методы так, чтобы тесты проходили.
+ - Все методы должны быть реализованы в указанном репозитории в отдельной ветке, вида training/lastname_firstname_date. После выполнения должен быть создан merge request на ментора.
+3. Подключить фреймворк `RxJava`, а так же библиотеки `RxAndroid` и `RxBinding`.
+4. Создать экран "Авторизация" согласно [макету](https://zpl.io/25ge5Z3).
+ - Кнопка "Войти" активна только в момент, когда в поля логин и пароль введено по 6 или более символов. В противном случае кнопка неактивна. Реализовать данное поведение с помощью `RxJava`.
+ - В неактивном состоянии кнопка "Войти" имеет серый фон вместо зеленого.
+ - При повороте экрана данные, введенные в поля ввода, должны сохраняться.
+ - Экран "Авторизация" необходимо отображать после Splash Screen. По нажатию стрелки назад, приложение закрывается. Переход на экран "Категории помощи" происходит при нажатии на активную кнопку "Войти".
+5. Доработать вкладку "По мероприятиям" экрана "Поиск"
+ - Реализовать логику работы `SearchView`. Поиск происходит в тот момент, когда пользователь 500 мс ничего не вводил в строку и не удалял из нее. То есть, если пользователь быстро вводит слово в строку поиска, поиск отрабатывает только 1 раз для всего слова целиком. Реализовать данное поведение с помощью `RxJava`.
+ - Данные для отображения результата необходимо брать из событий из созданных ранее json файлов.
+ - Если в строку поиска ничего не ввели, то вместо результатов поиска отображаем заглушку как на [макете](https://zpl.io/2jlkOZp).
+ - Если введенная в поиск строка не соответствует названию ни одного события, то отображаем пустой список результатов.
+ - При повороте экрана, а также при перелистывании `ViewPager` на вкладку "По НКО" и обратно строка, введенная в поиске, список результатов и позиция списка должны сохраняться.
+6. Реализовать счётчик непрочитанных новостей на пункте "Новости" в панели навигации (визуально можно сделать аналогично счетчику сообщений на иконке любого мессенджера).
+ - В качестве шины данных необходимо использовать Subject.
+ - Прочтение новости происходит при открытии экрана детального просмотра события.
+ - После прочтения новости, а также при смене фильтра новостей счётчик должен сразу обновляться.
+ - Обратите внимание, что данный функционал реализуем только локально. При выполнении следующих заданий, когда будет необходимо получать данные от сервера, информация о прочтении/не прочтении новости приходить не будет.
+7. Обернуть получение данных из json файлов по предыдущему [заданию](http://gitlab.simbirsoft/internships/mobile/android_trainee_education/-/blob/master/Программа-обучения-android-разработчика/VI.-Структуры-данных.-Работа-с-файлами.md#vi-структуры-данных-работа-с-файлами) в Observable
+ - Добавить операторы `subscribeOn` и `observeOn` с разными планировщиками (mainThread, io, computation, newThread). 
+ - Добавить выведение в лог текущего потока после использования данных операторов с разными планировщиками для наглядности их работы (используя doOnNext). Логирование можно также сделать при создании Observable (к примеру, в unsafeCreate). Обратить внимание на полученные логи.
+ - Добавить оператор объединения двух Observable (например, Zip, CombineLatest). Второй Observable можно создать с рандомными данными. Использовать subscribeOn и observeOn сначала на каждом отдельном Observable, затем на Observable, полученном после объединения. Вывести в лог текущий поток (для каждого из Observable). Обратить внимание на полученные логи.
+ - Добавить два observeOn в цепочке с разными планировщиками. Также добавить два subscribeOn. Вывести в лог текущий поток. Обратить внимание на полученные логи.
+ - Выбрать наиболее подходящую под [задание](http://gitlab.simbirsoft/internships/mobile/android_trainee_education/-/blob/master/Программа-обучения-android-разработчика/VI.-Структуры-данных.-Работа-с-файлами.md#vi-структуры-данных-работа-с-файлами) комбинацию subscribeOn и observeOn
+8. Запустить статические анализаторы кода (lint, ktlint, SonarLint) и исправить найденные замечания
+9. Завершить task в PS и залогировать затраченное время
+
+
+---
+## XI. Работа с сетью
+---
+### Теоретическая часть
+**1. Базовые понятия**
++ [HTTP](https://ru.wikipedia.org/wiki/HTTP) **(\*\*\*)**
++ [HTTP codes](https://ru.wikipedia.org/wiki/Список_кодов_состояния_HTTP) **(\*\*\*)**
++ [RESTful](https://habrahabr.ru/company/hexlet/blog/274675/) **(\*\*\*)**
++ [RESTful API — ложь](https://habrahabr.ru/post/265845/) **(\*)**
++ [WebSocket](https://stfalcon.com/ru/blog/post/android-websocket) **(\*\*)**
+
+**2. Библиотеки**
++ [OkHttp](http://square.github.io/okhttp/) **(\*\*\*\*)**
++ [Retrofit](http://square.github.io/retrofit/) **(\*\*\*\*)**
++ [Handling API calls using Retrofit 2 and RxJava 2](https://medium.com/3xplore/handling-api-calls-using-retrofit-2-and-rxjava-2-1871c891b6ae) **(\*\*\*\*)**
++ [OkHttp. Interceptors](https://github.com/square/okhttp/wiki/Interceptors) **(\*\*\*)**
++ [OkHttp which ignores all SSL errors](https://gist.github.com/chalup/8706740) **(\*\*\*)**
++ [Logging interceptor for okhttp](https://github.com/square/okhttp/tree/master/okhttp-logging-interceptor) **(\*\*)**
++ [Glide](https://blog.mindorks.com/downloading-and-showing-image-with-glide-library-in-android), подробнее о [кешировании изображений](https://futurestud.io/tutorials/glide-caching-basics) **(\*\*\*\*)**
++ [Picasso](https://code.tutsplus.com/tutorials/code-an-image-gallery-android-app-with-picasso--cms-30966), подробнее о [кешировании изображений](https://futurestud.io/tutorials/picasso-influencing-image-caching) **(\*\*\*\*)**
++ [Coil](https://medium.com/better-programming/how-to-use-coil-kotlins-native-image-loader-d6715dda7d26), подробнее о [кешировании изображений](https://coil-kt.github.io/coil/getting_started/#preloading) **(\*\*\*\*)**
++ [Сравнение Glide, Picasso и Coil](https://proandroiddev.com/coil-vs-picasso-vs-glide-get-ready-go-774add8cfd40) **(\*\*)**
+
+**3. Отладка. Перехват и подмена трафика мобильных устройств**
++ [Postman](https://habr.com/ru/company/kolesa/blog/351250/)  **(\*\*)**
++ [Fiddler](https://learn.javascript.ru/fiddler)  **(\*\*)**
++ [Charles](http://wormiks.ru/faq_po_programmam_wormix/11-charles_instrukcija_polzovatelja_i_faq.html)  **(\*\*)**
++ [Перехват и подмена трафика мобильных устройств](https://kb.simbirsoft.com/article/traffic-sniffers/)  **(\*)**
+
+**4. Codelabs**
++ [Android Network Security Configuration](https://codelabs.developers.google.com/codelabs/android-network-security-config/index.html?index=..%2F..index#0) **(\*\*)**
+
+### Практическое задание
+Работа должна производится в созданном ранее проекте.
+
+Все изменения должны быть закоммичены, а названия коммитов должны коротко и исчерпывающе описывать содержащие изменения. Каждый коммит должен быть рабочим, отправка некомпилирующегося кода недопустима. Для работы над этим заданием необходимо переключится на ветку `networking
+` и все изменения пушить в нее. После завершения работы над задачей в gitlab необходимо создать merge request в ветку `develop`.
+Код должен быть читабельным и написан согласно code-style.
+
+1. Создать task в PS с заголовком "XI. Работа с сетью" и взять ее в работу.
+2. Необходимо реализовать транспортный слой приложения, который будет осуществалять загрузку данных с [сервера](https://mobile-study.simbirsoft1.com). Запросы, реализуемые сервером, и формат ответов можно посмотреть открыв ссылку в браузере.
+**Важно** Сервер доступен только из сети SimbirSoft.
+ - Данные от сервера получать в виде Observable
+ - Все "тяжелые" операции должны быть реализованы в фоновом потоке
+ - На время выполнения фоновых операций пользователю должен быть показан Activity Indicator
+3. Заменить загрузку из файла на старте приложения на загрузку с сервера. В случае если ответ от сервера ошибочен - загрузить данные из файла.
+ - Все "тяжелые" операции должны быть реализованы в фоновом потоке
+ - На время выполнения фоновых операций пользователю должен быть показан Activity Indicator
+4. Реализовать загрузку изображений для блока "Ваши друзья" на экране профиля, используя библиотеку Glide, Picasso или Coil
+ - Во время загрузки изображения, а также при ошибке загрузки, необходимо реализовать отображение плейсхолдера
+ - Отключить кэширование изображений в памяти устройства (Disk Cache)
+5. Запустить статические анализаторы кода (lint, ktlint, SonarLint) и исправить найденные замечания
+6. Завершить task в PS и залогировать затраченное время
+
+---
+## XII. Базы данных. Content Provider
+---
+### Теоретическая часть
+
+**1. Android SQLite**
++ [Работа с SQLite средствами Android SDK](https://developer.android.com/training/data-storage/sqlite.html)  **(\*\*)**
++ [ORM](https://habrahabr.ru/company/yotadevices/blog/242559/)  **(\*\*)**
+
+**2. Основы Realm**
++ [Документация по Realm](https://realm.io/docs/java/latest/)  **(\*\*\*\*)**
++ [DatabaseProvider в androidbase](http://gitlab.simbirsoft/mobile/AndroidBase/blob/master/app/src/main/java/com/simbirsoft/baseplatform/data/db/DatabaseProvider.java)  **(\*\*)**
+
+**3. Основы Room**
++ [Документация по Room](https://developer.android.com/topic/libraries/architecture/room)  **(\*\*\*\*)**
++ [Room и Rx](https://medium.com/androiddevelopers/room-rxjava-acb0cd4f3757)  **(\*\*\*\*)**
+
+**4. Content Provider**
++ [Основы](https://developer.android.com/guide/topics/providers/content-provider-basics.html?hl=ru) **(\*\*)**
++ [Видео-лекция Яндекса: Школа мобильной разработки – Content provider. Максим Хромцов](https://youtu.be/zeDzbzLmpLs?list=PLQC2_0cDcSKBNCR8UWeElzCUuFkXASduz) **(\*\*)**  
+
+**5. Codelabs**
++ [Codelab по Room Java](https://codelabs.developers.google.com/codelabs/android-room-with-a-view/index.html?index=..%2F..index#0) **(\*\*\*)**
++ [Codelab по Room Kotlin](https://codelabs.developers.google.com/codelabs/android-room-with-a-view-kotlin/index.html?index=..%2F..index#0)  **(\*\*\*)**
++ [Paging](https://codelabs.developers.google.com/codelabs/android-paging/#0)  **(\*\*\*)**
+
+### Практическое задание
+Работа должна производится в созданном ранее проекте.
+
+Все изменения должны быть закоммичены, а названия коммитов должны коротко и исчерпывающе описывать содержащие изменения. Каждый коммит должен быть рабочим, отправка некомпилирующегося кода недопустима. Для работы над этим заданием необходимо переключится на ветку `data_base` и все изменения пушить в нее. После завершения работы над задачей в gitlab необходимо создать merge request в ветку `develop`.
+Код должен быть читабельным и написан согласно code-style. В системе PS также необходимо создать созвучную задачу, в которую после завершения будет залогировано время.
+
+1. Создать task в PS с заголовком "XII. Базы данных" и взять ее в работу.
+2. Необходимо создать базу данных с использованием Room для хранения сущностей Категории и Благотворительных событий.
+3. При первом получении данных для сущностей Категории и Благотворительные события, сохранять данные в базе данных, и дальнейшее получение производить из нее. Обновление данных должно происходить только для новой сессии.
+ - Чтение и запись должны быть реализованы в фоновом потоке
+ - На время выполнения фоновых операций пользователю должен быть показан Activity Indicator
+4. Наполнение экранов Категории и Благотворительных событий должно происходить из созданной базы данных
+ - Все "тяжелые" операции должны быть реализованы в фоновом потоке
+ - На время выполнения фоновых операций пользователю должен быть показан Activity Indicator
+5. Запустить статические анализаторы кода (lint, ktlint, SonarLint) и исправить найденные замечания
+6. Завершить task в PS и залогировать затраченное время
+
+
+---
+## XIII. Архитектура приложений. Практика в рамках продуктового проекта.
+---
+### Теоретическая часть
+
+**1. Архитектура**
++ [Принципы SOLID](https://habr.com/ru/post/348286/)  **(\*\*\*\*)**
++ [MVC, MVP, MVVM](https://habrahabr.ru/company/mobileup/blog/313538/) **(\*\*)**
++ [MVI](https://habr.com/ru/company/badoo/blog/429728/) **(\*\*)**
++ [Redux (eng)](https://android.jlelse.eu/redux-rxkotlin-rxswift-awesome-native-mobile-apps-introduction-part-1-4ea7fa3be319) **(\*\*)**
++ [RIBs 1](https://habr.com/ru/company/sports_ru/blog/424305/) **(\*)**
++ [RIBs 2](https://apptractor.ru/info/articles/mobilnaya-razrabotka-v-bilayn-arhitektura-instrumentyi-i-tseli.html) **(\*)**
+
++ [Про создание архитектур](https://habr.com/ru/post/276593/) **(\*\*\*)**
++ [Общие принципы архитектур](https://habr.com/ru/post/456256/) **(\*\*)**
+
++ [Moxy - ссылка на библиотеку](https://github.com/Arello-Mobile/Moxy ) **(\*\*\*\*)**
++ [Moxy — статья о том, как она работает](https://habrahabr.ru/post/276189/) **(\*\*\*\*)**
++ [Видео-лекция Яндекса: Школа мобильной разработки – MVP&Co. Дмитрий Попов](https://youtu.be/jOCjKyV9a5U?list=PLQC2_0cDcSKBNCR8UWeElzCUuFkXASduz)  рассказывает про архитектуру и наглядно показыватет как архитектура влияет на приложение в разработке. рекомендуется просмотр до момента, когда лектор начинает рассказывать про тестирование **(\*\*)**  
+
++ [Android Architecture Components](https://developer.android.com/topic/libraries/architecture) **(\*\*)**
+
+**2. Clean Architecture**
++ [Статья самого Дядюшки Боба](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html) **(\*\*\*\*)**
++ [Хороший цикл статей](https://five.agency/android-architecture-part-1-every-new-beginning-is-hard/) **(\*\*\*\*)**
++ [Видео-доклад "Чистая архитектура. Погружение"](https://www.youtube.com/watch?v=JePQFYb5WJI&feature=youtu.be) **(\*\*\*\*)**
++ [Пример использования архитектуры](https://github.com/android10/Android-CleanArchitecture) **(\*\*\*)**
++ [Заблуждения Clean Architecture](https://habr.com/ru/company/mobileup/blog/335382/) **(\*\*\*)**
++ [Руководство по применению чистой архитектуры в Android проектах](https://github.com/AndroidArchitecture/AndroidArchitectureBook) **(\*\*)**
+
+**3. DI**
++ [Dagger 2 - ссылка на библиотеку](https://github.com/google/dagger)  **(\*\*\*\*)**
++ [Dagger 2 - хороший цикл статей](https://habr.com/ru/post/343248/)  **(\*\*\*\*)**
++ [Dagger 2 - еще один хороший цикл статей](https://habr.com/post/279125/)  **(\*\*\*\*)**
++ [Toothpick](https://github.com/stephanenicolas/toothpick) **(\*\*)**
++ [Видео-лекция Яндекса: Школа мобильной разработки – MyFirstApp (Часть 2). Роман Григорьев](https://youtu.be/gRuTqyCPjv4?list=PLQC2_0cDcSKBNCR8UWeElzCUuFkXASduz)  Описывает флаги запуска активити, говорит о проблеме пересоздания активити в ос Андроид и подходы к созданияю приложения (на активити, на фрагметах, на вьюхах), поднимает проблему пересоздания активити при повороте экрана **(\*\*)**
+
+**4. Многомодульность**
++ [Многомодульность](https://habr.com/ru/company/kaspersky/blog/422555/) **(\*\*)**
+
+**5. Утечки памяти**
++ [Обзоп системы управления памятью в Android](https://developer.android.com/topic/performance/memory-overview) **(\*\*)**
++ [Описание принципов работы с памятью. Типичные утечки памяти](https://proandroiddev.com/everything-you-need-to-know-about-memory-leaks-in-android-d7a59faaf46a) **(\*\*)**
++ [Доклад про GC, Профилирование, Поиск и устранение утечек](https://youtu.be/jJDZdg0dP2Y) **(\*\*)**
+
+### Практическое задание
+Работа должна производится в созданном ранее проекте.
+
+Все изменения должны быть закоммичены, а названия коммитов должны коротко и исчерпывающе описывать содержащие изменения. Каждый коммит должен быть рабочим, отправка некомпилирующегося кода недопустима. Для работы над этим заданием необходимо переключится на ветку `architecture` и все изменения пушить в нее. После завершения работы над задачей в gitlab необходимо создать merge request в ветку `develop`.
+Код должен быть читабельным и написан согласно code-style. В системе PS также необходимо создать созвучную задачу, в которую после завершения будет залогировано время.
+
+1. Создать task в PS с заголовком "XIII. Архитектура" и взять ее в работу.
+2. Перпеписать свое приложение, применяя архитектурный подход Clean Architecture. В реализации presentation слоя применить архитектурный паттерн MVP с использованием библиотеки Moxy. Для предоставления зависимостей в соотвествии с техникой DI использовать библиотеку Dagger 
+3. Запустить статические анализаторы кода (lint, ktlint, SonarLint) и исправить найденные замечания
+4. Завершить task в PS и залогировать затраченное время
+
+
+---
+## XIV. WorkManager. Push Notifications. BroadcastReceiver. Deep Links
+---
+### Теоретическая часть
+
+**1. BroadcastReceiver**  
++ [BroadcastReceiver - основы](https://developer.android.com/guide/components/broadcasts) **(\*\*\*\*)**
++ [Broadcast Limitations Android 8.0+](https://developer.android.com/about/versions/oreo/background#broadcasts) **(\*\*)**
++ [Implicit Broadcast Exceptions](https://developer.android.com/guide/components/broadcast-exceptions.html) **(\*\*)**
+
+**2. Push Notifications**  
++ [Push Notifications - основы](https://developer.android.com/guide/topics/ui/notifiers/notifications) **(\*\*\*\*)**
++ [Notification priority levels](https://material.io/design/platform-guidance/android-notifications.html#settings) **(\*\*)**
++ [FCM FAQ](https://firebase.google.com/support/faq/#cloud-messaging}) **(\*)**
+
+**3. WorkManager**
++ [Job Scheduler](http://ticketmastermobilestudio.com/blog/how-to-use-androids-job-scheduler) **(\*\*\*\*)**
++ [WorkManager - основы](https://developer.android.com/topic/libraries/architecture/workmanager) **(\*\*\*\*)**
++ [WorkManager - типы Constraints](https://developer.android.com/reference/androidx/work/Constraints.Builder.html) **(\*\*)**
++ [Цикл статей "Introducing WorkManager"](https://medium.com/androiddevelopers/introducing-workmanager-2083bcfc4712) **(\*\*)**
++ [Видео "WorkManager: Beyond the Basics"](https://www.youtube.com/watch?v=Bz0z694SrEE&feature=youtu.be) **(\*\*)**
+
+**4. Deep links**
++ [Deep links и App links - в чем разница?](https://developer.android.com/training/app-links) **(\*\*\*\*)**
++ [Создание Deep links](https://developer.android.com/training/app-links/deep-linking) **(\*\*\*\*)**
++ [Android app linking types](https://simonmarquis.github.io/Android-App-Linking/) - очень удобная сравнительная таблица **(\*\*\*)**
+
+**5. Codelabs**
++ [BroadcastReceivers](https://codelabs.developers.google.com/codelabs/android-training-broadcast-receivers/index.html) **(\*\*)**
++ [Alarm Manager](https://codelabs.developers.google.com/codelabs/android-training-alarm-manager/index.html) **(\*\*)**
++ [Push Notifications](https://codelabs.developers.google.com/codelabs/advanced-android-kotlin-training-notifications/#0) **(\*\*\*)**
++ [FCM](https://codelabs.developers.google.com/codelabs/advanced-android-kotlin-training-notifications-fcm/#0) **(\*\*)**
++ [WorkManager](https://codelabs.developers.google.com/codelabs/android-workmanager/index.html) **(\*\*\*)**
++ [WorkManager Advanced](https://codelabs.developers.google.com/codelabs/android-adv-workmanager/index.html) **(\*\*\*)**
+
+
+
+### Практическое задание
+Работа должна производится в созданном ранее проекте.
+
+Все изменения должны быть закоммичены, а названия коммитов должны коротко и исчерпывающе описывать содержащие изменения. Каждый коммит должен быть рабочим, отправка некомпилирующегося кода недопустима. Для работы над этим заданием необходимо переключится на ветку `workmanager` и все изменения пушить в нее. После завершения работы над задачей в gitlab необходимо создать merge request в ветку `develop`.
+Код должен быть читабельным и написан согласно code-style.
+
+1. Создать task в PS с заголовком "XIV. WorkManager" и взять ее в работу.
+2. В рамках блока 6 "Структура данных" был реализован экран "Детальное описание события". Необходимо на данном экране по нажатию на кнопку "Помочь деньгами" отображать [диалог](https://zpl.io/aM45oe3).
+ - Поле ввода суммы должно принимать только числовые значения от 1 до 9 999 999. Если сумма в поле ввода не валидна, кнопка "Перевести" должна быть не активна.
+ - После нажатия на кнопку "Перевести" должен создаваться OneTimeWorkRequest, который будет запущен как только мы поставим телефон на зарядку. В качестве параметров необходимо передать:
+    - id события, которому мы помогаем деньгами;
+    - название события;
+    - сумма перевода. Сумма берется из поля ввода. Если поле пустое - сумма, указанная выше поля ввода.
+3. В методе doWork() нашего OneTimeWorkRequest необходимо отобразить пользователю Notification:
+ - В качестве заголовка отображать название события, которому помогли деньгами.
+ - В качестве тела уведомления отображать фразу "Спасибо, что пожертвовали {сумма пожертвования} ₽! Будем очень признательны, если вы сможете пожертвовать еще больше."
+ - По нажатию на уведомление должен открываться экран "Детальное описание события" события, на которое мы пожертвовали деньги.
+ - Также на уведомлении необходимо отобразить кнопку "Напомнить позже", по нажатию на которую текущее уведомление скрывается, но через 30 минут пользователю отображается новое:
+    - В качестве заголовка отображать название события, которому помогли деньгами.
+    - В качестве тела уведомления отображать фразу "Напоминаем, что мы будем очень признательны, если вы сможете пожертвовать еще больше."
+    - По нажатию на уведомление должен открываться экран "Детальное описание события" события, на которое мы пожертвовали деньги.
+    - Кнопка "Напомнить позже" отображаться не должна
+4. Запустить статические анализаторы кода (lint, ktlint, SonarLint) и исправить найденные замечания
+5. Завершить task в PS и залогировать затраченное время
+
+
+---
+## XV. Решение академических задач
+---
+### Теоретическая часть
+
++ [javarush](https://javarush.ru) - Ресурс предлагает базовые задачки, решать их можно только на Java. Так же есть курсы по самой Java, начиная с азов синтаксиса, заканчивая Java Multithreading, так же есть курс по андроиду.
++ [CodeWars](https://www.codewars.com) - Ресурс предлагает огромную подборку задач на более чем 20 языках программирования. На codewars вы сможете обсудить задачи с другими игроками, а также посмотреть альтернативные решения. Можно писать на Java и Kotlin.
++ [HackerRank](https://www.hackerrank.com) - Уровень сложности задач на HackerRank чуть выше, чем на CodeWars, попадаются задания, выходящие за рамки базового программирования. Можно развиваться в нескольких областях, включая алгоритмы, математику, SQL, функциональное программирование, AI и многое другое. Можно писать на Java и Kotlin.
++ [CodinGame](https://www.codingame.com/start) - Это платформа для изучения программирования в игровой форме. Управляйте сценарием игры с помощью кода. Большой выбор языков, обучения по фану. В играх есть описание проблемы и тестовые примеры. Определенно стоит попробовать такой подход в обучении. Можно писать на Java и Kotlin.
+
+### Практическое задание
+
+1. Создать таск в PS с названием "XV. Решение академических задач"
+2. Создать репозиторий формата ФАМИЛИЯ_PRACTICE
+3. Создать ветку формата DD.MM.YYYY
+4. Решить определенные задачи с сайта CodeWars:
+   + [Task 1. Маска карты](https://www.codewars.com/kata/5412509bd436bd33920011bc)
+   + [Task 2. Работа с массивом](https://www.codewars.com/kata/5679aa472b8f57fb8c000047)
+   + [Task 3. Удаление в строке](https://www.codewars.com/kata/5727bb0fe81185ae62000ae3)
+   + [Task 4. Телефонный номер](https://www.codewars.com/kata/525f50e3b73515a6db000b83)
+   + [Task 5. RegEx](https://www.codewars.com/kata/56a3f08aa9a6cc9b75000023)
+5. Решить дополнительно 5 заданий учитывая сложность:
+    + 2 задания на 8 kyu
+    + 2 задания на 7 kyu
+    + 1 задание на 6 kyu
+6. Для 4го пункта - в классах сохранить ссылки на задание в виде комментария к коду
+7. Опубликовать решеные результаты в репозитории
+8. Завершить таск в PS и затрекать время.
+
+
+---
+## XVI. Профилирование
+---
+### Теоретическая часть
+
+**2. Основная документация**
++ [Документация по debug](https://developer.android.com/studio/debug/)  **(\*\*\*\*)**
++ [Уроки по сохранению заряда батареи](https://developer.android.com/training/efficient-downloads/)  **(\*\*)**
+
+**2. Библиотеки**
++ [Статья о инструменте LeakCanary](https://medium.com/square-corner-blog/leakcanary-detect-all-memory-leaks-875ff8360745)  **(\*\*\*\*)**
++ [Статья про StrictMode](https://android.jlelse.eu/android-dev-tool-best-practice-with-strictmode-a023e09030a5)  **(\*\*)**
++ [Управление логами](https://github.com/JakeWharton/timber)  **(\*\*\*\*)**
++ [Отладка](https://github.com/JakeWharton/hugo)  **(\*\*)**
+
+**3. Примеры**
++ [Пример отладки приложения](https://habr.com/ru/company/edison/blog/271761/)  **(\*\*\*)**
++ [Пример профилирования приложения](https://habr.com/ru/company/mailru/blog/263413/)  **(\*\*\*)**
+
+**4. Прочее**
++ [Optimizations](https://www.youtube.com/watch?v=rfkkom3-_1g)  **(\*\*\*\*)**
++ [Возможности студии для дебага](https://habr.com/ru/post/419613/)  **(\*\*)**
+
+### Практическое задание
+
+Пройти Codelabs:
+1. + [Profile GPU Rendering](https://codelabs.developers.google.com/codelabs/advanced-android-training-profile-gpu/index.html?index=..%2F..advanced-android-training#0)
+2. + [Debug GPU Overdraw and Layout Inspector](https://codelabs.developers.google.com/codelabs/advanced-android-training-performance-tools/index.html?index=..%2F..advanced-android-training#0)
+3. + [Memory Profiler](https://codelabs.developers.google.com/codelabs/advanced-android-training-memory-profiler/index.html?index=..%2F..advanced-android-training#0)
+
+---
+## XVII. Custom view и анимации
+---
+### Теоретическая часть
+
+ **1. Custom view**
+ + [Документация](https://developer.android.com/guide/topics/ui/custom-components) **(\*\*\*)**
+ + [Реализация custom view](https://tuhub.ru/posts/realizatsiya-custom-view-komponenta-v-android) **(\*\*\*\*)**
+ + [Подробнее о рисовании на canvas](https://medium.com/better-programming/learn-all-android-canvas-draw-functions-dd5d6595884a) **(\*\*\*\*)**
+
+ **2. Анимации**
+ + [Обзор доступных фреймворков](https://www.youtube.com/watch?v=N_x7SV3I3P0) **(\*\*\*)**
+ + [Property Animation](https://developer.android.com/guide/topics/graphics/prop-animation) **(\*\*\*\*)**
+ + [Transitions](https://developer.android.com/training/transitions) **(\*\*\*)**
+ + [Animated Vector Drawable](https://developer.android.com/reference/android/graphics/drawable/AnimatedVectorDrawable) **(\*\*\*)**
+ + [Библиотека Lottie](https://github.com/airbnb/lottie-android) и [пример её использования](https://medium.com/comparethemarket/lottie-on-android-part-1-the-basics-aabc7f072fa0) **(\*\*\*)**
+ + [Physics Based Animation](https://android.jlelse.eu/android-physics-based-animation-cf0cc125830f) **(\*\*\*)**
+ + [Motion Layout](https://developer.android.com/training/constraint-layout/motionlayout) **(\*\*\*\*)**
+ 
+### Практическое задание
+ 
+1. Создать task в PS с заголовком "XVII. Custom view и анимации" и взять ее в работу.
+2. Пройти codelabs - custom view: 
+ - [Custom view](https://codelabs.developers.google.com/codelabs/advanced-andoid-kotlin-training-custom-views/index.html?index=..%2F..advanced-android-kotlin-training#0)
+3. Пройти codelabs - рисование на canvas:
+ - [Create canvas](https://codelabs.developers.google.com/codelabs/advanced-android-training-create-canvas/index.html?index=..%2F..advanced-android-training#0)
+ - [Draw on canvas](https://codelabs.developers.google.com/codelabs/advanced-android-training-draw-on-canvas/index.html?index=..%2F..advanced-android-training#0)
+ - [Apply clipping to canvas](https://codelabs.developers.google.com/codelabs/advanced-android-training-apply-clipping-to-canvas/index.html?index=..%2F..advanced-android-training#0)
+4. Пройти codelabs - анимации:
+ - [Property animation](https://codelabs.developers.google.com/codelabs/advanced-android-kotlin-training-property-animation/index.html?index=..%2F..advanced-android-kotlin-training#0)
+ - [Motion layout](https://codelabs.developers.google.com/codelabs/motion-layout/index.html?index=..%2F..advanced-android-kotlin-training#0)
+
+---
+## XVIII. Тестирование
+---
+### Теоретическая часть
+
+ **1. Unit-тестирование**
+ + [Видео-лекция по unit-тестированию](https://www.youtube.com/watch?time_continue=1&v=7GuZMutlJmE&feature=emb_logo) **(\*\*\*)**
+ + [Краткое руководство по JUnit](https://androidpedia.net/en/tutorial/3205/unit-testing-in-android-with-junit), дополнительную информацию можно найти в [JUnit 5 User Guide](https://junit.org/junit5/docs/current/user-guide/) или [JUnit 4](https://github.com/junit-team/junit4/wiki) **(\*\*\*\*)**
+ + [Руководство по библиотеке Mockito](https://habr.com/ru/post/444982/), дополнительную информацию можно найти в [Mockito docs](https://javadoc.io/doc/org.mockito/mockito-core/latest/org/mockito/Mockito.html) **(\*\*\*\*)**
+ + Зачем нужна библиотека [Mockito-Kotlin](https://github.com/nhaarman/mockito-kotlin/wiki), а также про её особенности - ["Mocking-and-verifying"](https://github.com/nhaarman/mockito-kotlin/wiki/Mocking-and-verifying) and ["Parameter-specified-as-non-null-is-null"](https://github.com/nhaarman/mockito-kotlin/wiki/Parameter-specified-as-non-null-is-null) **(\*\*\*\*)**
+ + [Краткое руководство по библиотеке Mockk](https://medium.com/@prashantspol/mockk-better-to-way-to-mock-in-kotlin-than-mockito-1b659c5232ec) **(\*\*\*\*)**
+ + [Подробнее о библиотеке Mockk](https://mockk.io/), особенно серия статей - “Mocking is not rocket science” **(\*\*\*)**
+ + [Зачем нужна библиотека Kotest](https://medium.com/sodalabs/painless-unit-testing-with-kotlintest-mockk-8854d549b96b]) **(\*\*)**
+ + [Руководство по библиотеке Kotest](https://github.com/kotest/kotest/wiki/Reference-Doc) **(\*\*)**
+
+ **2. Ui-тестирование**
+ + [Руководство по Espresso](https://habr.com/ru/company/otus/blog/472372/) **(\*\*\*\*)**
+ + [Руководство по Kaspresso](https://medium.com/sodalabs/painless-ui-testing-with-kaspresso-1a02d02ca7ae) **(\*\*\*\*)**
+ + [О Kaspresso](https://habr.com/ru/company/kaspersky/blog/467617/) **(\*)**
+
+ **3. Общее**
+ + [Отличия между разными типами тестов](https://medium.com/@lawrey/unit-tests-ui-tests-integration-tests-end-to-end-tests-c0d98e0218a6) **(\*\*\*\)**
+ 
+### Практическое задание
+ 
+1. Создать task в PS с заголовком "XVIII. Тестирование" и взять ее в работу.
+2. Пройти codelabs - основы запуска и написания тестов
+ - [Testing Basics](https://codelabs.developers.google.com/codelabs/advanced-android-kotlin-training-testing-basics/index.html?index=..%2F..index#0)
+3. Пройти codelabs - инъекция зависимостей, создание моков, работа с Espresso и т.д.:
+ - [Dependency Injection and Test Doubles](https://codelabs.developers.google.com/codelabs/advanced-android-kotlin-training-testing-test-doubles/#0)
+4. Пройти codelabs - корутины, Room, Espresso Idling Resource, e2e тесты и т.д.:
+ - [Survey of Testing Topics](https://codelabs.developers.google.com/codelabs/advanced-android-kotlin-training-testing-survey/#0)
+
+**Важно**
+Дальнейшая работа должна производиться в созданном ранее проекте.
+
+Все изменения должны быть закоммичены, а названия коммитов должны коротко и исчерпывающе описывать содержащие изменения. Каждый коммит должен быть рабочим, отправка некомпилирующегося кода недопустима. Для работы над этим заданием необходимо переключится на ветку `test` и все изменения пушить в нее. После завершения работы над задачей в gitlab необходимо создать merge request в ветку `develop`.
+Код должен быть читабельным и написан согласно code-style.
+
+5. Покрыть unit-тестами: 
+ - Презентер экрана помощи (категории)
+ - Презентер экрана новостей (события)
+ - Презентер экрана фильтров новостей
+ - Презентер экрана профиля
+ - Маппер/конвертер событий
+6. Покрыть компонентными ui-тестами (**не** e2e) экраны:
+ - Экран новостей (события)
+ - Экран профиля
+ - Экран детального просмотра события
