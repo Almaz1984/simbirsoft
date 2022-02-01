@@ -4,6 +4,7 @@ import android.util.Log
 import com.almaz.task1.kotlin_training.part2.Type
 
 const val TAG = "MAIN_ACTIVITY_PART_2"
+const val ADULT_AGE = 18
 
 object Part2 {
     fun run() {
@@ -12,9 +13,9 @@ object Part2 {
             Thread.sleep(1000) и повторно вывести в лог startTime.
          */
         val person = User(0, "Ivan", 20, Type.FULL)
-        Log.d(TAG, person.startTime.toString())
+        Log.d(TAG, person.startTime)
         Thread.sleep(1000)
-        Log.d(TAG, person.startTime.toString())
+        Log.d(TAG, person.startTime)
 
         /* 4
             Создать список пользователей, содержащий в себе один объект класса User. Используя
@@ -77,8 +78,10 @@ object Part2 {
         и в случае успеха выводит в лог, а в случае неуспеха возвращает ошибку.
      */
     private fun User.verifyAge() {
-        if (age > 18) Log.d(TAG, "User permitted")
-        else throw IllegalArgumentException("Access is denied. User under 18")
+        when (age > ADULT_AGE) {
+            true -> Log.d(TAG, "User permitted")
+            false -> throw IllegalArgumentException("Access is denied. User under 18")
+        }
     }
 
     /* 8

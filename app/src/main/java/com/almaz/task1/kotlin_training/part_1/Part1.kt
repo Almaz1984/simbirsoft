@@ -58,7 +58,7 @@ object Part1 {
         sum(3, 4)
     }
 
-    fun buy(publication: Publication) {
+    private fun buy(publication: Publication) {
         Log.d(TAG, "The purchase is complete. The purchase amount was ${publication.price}")
     }
 }

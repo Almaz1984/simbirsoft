@@ -14,7 +14,7 @@ data class User(
     val age: Int,
     val type: Type,
 ) {
-    val startTime: LocalTime by lazy {
-        LocalTime.now()
+    val startTime: String by lazy {
+        LocalTime.now().toString()
     }
 }
