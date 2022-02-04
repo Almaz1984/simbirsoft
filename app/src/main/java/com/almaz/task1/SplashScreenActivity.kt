@@ -18,6 +18,10 @@ class SplashScreenActivity : AppCompatActivity() {
             val intent = Intent(this@SplashScreenActivity, MainActivity::class.java)
             startActivity(intent)
             finish()
-        }, 2000)
+        }, DELAY)
+    }
+
+    companion object {
+        const val DELAY = 2000L
     }
 }

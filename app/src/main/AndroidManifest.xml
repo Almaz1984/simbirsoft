@@ -20,6 +20,7 @@
             </intent-filter>
         </activity>
         <activity
+            android:label="Профиль"
             android:name=".MainActivity">
         </activity>
     </application>
