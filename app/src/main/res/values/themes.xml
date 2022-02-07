@@ -14,11 +14,12 @@
         <!-- Customize your theme here. -->
     </style>
 
-    <style name="SplashScreen" parent="AppTheme">
+    <style name="SplashScreenTheme" parent="AppTheme">
         <item name="windowNoTitle">true</item>
         <item name="windowActionBar">false</item>
         <item name="android:windowFullscreen">true</item>
         <item name="android:windowContentOverlay">@null</item>
+        <item name="android:background">@color/cool_grey</item>
     </style>
 
     <style name="OfficinaSansExtraBoldScc">
@@ -28,10 +29,33 @@
         <item name="android:textColor">@color/white</item>
     </style>
 
-    <style name="ProfileName">
+    <style name="ProfileDefaultFont">
         <item name="android:gravity">left</item>
-        <item name="android:textSize">24sp</item>
         <item name="fontFamily">@font/roboto_regular</item>
         <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="ProfileNameFont"> parent="ProfileFont">
+        <item name="android:textSize">24sp</item>
+    </style>
+
+    <style name="ProfileGrayTextFont"> parent="ProfileFont">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/black38</item>
+        <item name="android:lineSpacingExtra">4sp</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+
+    <style name="ProfileButtonFont">
+        <item name="android:gravity">left</item>
+        <item name="android:textSize">14sp</item>
+        <item name="fontFamily">@font/roboto_medium</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="BottomNavigationTheme" parent="AppTheme">
+        <item name="colorPrimary">@color/black40</item>
+        <item name="android:textColorSecondary">@color/leaf_600</item>
     </style>
 </resources>
