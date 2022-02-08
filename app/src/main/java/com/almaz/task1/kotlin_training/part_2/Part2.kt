@@ -1,7 +1,6 @@
 package com.almaz.task1.kotlin_training.part_2
 
 import android.util.Log
-import com.almaz.task1.kotlin_training.part2.Type
 
 const val TAG = "MAIN_ACTIVITY_PART_2"
 const val ADULT_AGE = 18

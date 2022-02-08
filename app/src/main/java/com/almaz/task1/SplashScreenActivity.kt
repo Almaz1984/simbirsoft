@@ -10,14 +10,19 @@ class SplashScreenActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash_screen)
-        routeToAppropriatePage()
+        routeToMainActivity()
     }
 
-    private fun routeToAppropriatePage() {
+    private fun routeToMainActivity() {
+
         Handler(Looper.getMainLooper()).postDelayed({
             val intent = Intent(this@SplashScreenActivity, MainActivity::class.java)
             startActivity(intent)
             finish()
-        }, 2000)
+        }, SPLASH_DELAY)
+    }
+
+    companion object {
+        const val SPLASH_DELAY = 2000L
     }
 }
