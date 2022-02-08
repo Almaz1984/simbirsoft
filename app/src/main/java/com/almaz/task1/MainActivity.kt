@@ -14,6 +14,7 @@ class MainActivity : AppCompatActivity() {
     private fun setupBottomNavigationView() {
         val bottomNavigationView: BottomNavigationView = findViewById(R.id.bottom_navigation)
         bottomNavigationView.apply {
+
             setOnItemSelectedListener { menuItem ->
                 val transaction = supportFragmentManager.beginTransaction()
                 when (menuItem.itemId) {
@@ -24,6 +25,7 @@ class MainActivity : AppCompatActivity() {
                 transaction.commit()
                 true
             }
+
             menu.getItem(HELP_MENU_INDEX).isEnabled = false
             selectedItemId = R.id.navigation_profile
             background = null

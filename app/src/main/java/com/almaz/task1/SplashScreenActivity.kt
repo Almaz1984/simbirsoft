@@ -14,6 +14,7 @@ class SplashScreenActivity : AppCompatActivity() {
     }
 
     private fun routeToMainActivity() {
+
         Handler(Looper.getMainLooper()).postDelayed({
             val intent = Intent(this@SplashScreenActivity, MainActivity::class.java)
             startActivity(intent)
