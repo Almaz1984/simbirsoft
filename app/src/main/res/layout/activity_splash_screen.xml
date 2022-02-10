@@ -8,9 +8,9 @@
 
     <ImageView
         android:id="@+id/logo"
-        android:layout_width="245dp"
-        android:layout_height="73dp"
-        android:layout_marginTop="154dp"
+        android:layout_width="@dimen/splash_screen_logo_width_245dp"
+        android:layout_height="@dimen/splash_screen_logo_height_73dp"
+        android:layout_marginTop="@dimen/margin_154dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -21,34 +21,31 @@
     <ProgressBar
         android:id="@+id/progress_bar"
         style="?android:attr/progressBarStyle"
-        android:layout_width="38dp"
-        android:layout_height="38dp"
-        android:layout_marginTop="83dp"
+        android:layout_width="@dimen/splash_screen_progress_bar_size_38dp"
+        android:layout_height="@dimen/splash_screen_progress_bar_size_38dp"
+        android:layout_marginTop="@dimen/margin_83dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/logo" />
 
     <TextView
+        style="@style/SplashScreenFont"
         android:id="@+id/textLoading"
-        android:layout_width="69dp"
-        android:layout_height="19dp"
-        android:layout_marginTop="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_20dp"
         android:fontFamily="@font/roboto_regular"
         android:gravity="center_horizontal"
         android:text="@string/splashScreenLoadingText"
-        android:textColor="@color/black70"
-        android:textSize="14sp"
-        android:lineSpacingExtra="6sp"
-        android:textStyle="normal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/progress_bar" />
 
     <ImageView
         android:id="@+id/logoMss"
-        android:layout_width="116dp"
-        android:layout_height="16dp"
-        android:layout_marginBottom="40dp"
+        android:layout_width="@dimen/splash_screen_logo_mss_width_116dp"
+        android:layout_height="@dimen/splash_screen_logo_mss_height_16dp"
+        android:layout_marginBottom="@dimen/margin_40dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

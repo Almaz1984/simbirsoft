@@ -8,8 +8,7 @@ import com.almaz.task1.data.model.Friend
 
 class FriendsAdapter(
     private val friendsList: MutableList<Friend> = mutableListOf()
-) :
-    RecyclerView.Adapter<MyViewHolder>() {
+) : RecyclerView.Adapter<MyViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val itemView =

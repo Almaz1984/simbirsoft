@@ -16,8 +16,7 @@
 
     <style name="SplashScreenTheme" parent="AppTheme">
         <item name="windowNoTitle">true</item>
-        <item name="windowActionBar">false</item>
-        <item name="android:windowFullscreen">true</item>
+        <item name="windowActionBar">true</item>
         <item name="android:windowContentOverlay">@null</item>
         <item name="android:background">@color/cool_grey</item>
     </style>
@@ -57,5 +56,14 @@
     <style name="BottomNavigationTheme" parent="AppTheme">
         <item name="colorPrimary">@color/black40</item>
         <item name="android:textColorSecondary">@color/leaf_600</item>
+    </style>
+
+    <style name="SplashScreenFont">
+        <item name="android:textStyle">normal</item>
+        <item name="android:lineSpacingExtra">6sp</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:textSize">14sp</item>
+        <item name="fontFamily">@font/officina_sans_extra_bold_scc</item>
+        <item name="android:textColor">@color/black70</item>
     </style>
 </resources>
