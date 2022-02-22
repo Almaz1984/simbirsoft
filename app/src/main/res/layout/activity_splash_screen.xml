@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SplashScreenActivity">
+
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="@dimen/splash_screen_logo_width_245dp"
+        android:layout_height="@dimen/splash_screen_logo_height_73dp"
+        android:layout_marginTop="@dimen/margin_154dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_logo"
+        tools:ignore="MissingConstraints"
+        android:contentDescription="@string/splashScreenSimbirsoftLogo" />
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="@dimen/splash_screen_progress_bar_size_38dp"
+        android:layout_height="@dimen/splash_screen_progress_bar_size_38dp"
+        android:layout_marginTop="@dimen/margin_83dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/logo" />
+
+    <TextView
+        style="@style/SplashScreenFont"
+        android:id="@+id/textLoading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_20dp"
+        android:fontFamily="@font/roboto_regular"
+        android:gravity="center_horizontal"
+        android:text="@string/splashScreenLoadingText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/progress_bar" />
+
+    <ImageView
+        android:id="@+id/logoMss"
+        android:layout_width="@dimen/splash_screen_logo_mss_width_116dp"
+        android:layout_height="@dimen/splash_screen_logo_mss_height_16dp"
+        android:layout_marginBottom="@dimen/margin_40dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/logo_mss"
+        tools:ignore="MissingConstraints"
+        android:contentDescription="@string/splashScreenMssLogo" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

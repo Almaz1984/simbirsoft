@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/margin_10dp"
+    android:orientation="horizontal"
+    tools:ignore="UseCompoundDrawables">
+
+    <ImageView
+        android:id="@+id/text_view_avatar_profile"
+        android:layout_width="@dimen/friend_avatar_size"
+        android:layout_height="@dimen/friend_avatar_size"
+        android:layout_gravity="start"
+        android:contentDescription="@string/friend_avatar"
+        android:src="@drawable/avatar_1" />
+
+    <TextView
+        android:id="@+id/text_view_name_friend"
+        style="@style/ProfileDefaultFont"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginStart="@dimen/margin_20dp"
+        android:text="@string/friend_name"
+        android:textColor="@color/black" />
+
+</LinearLayout>

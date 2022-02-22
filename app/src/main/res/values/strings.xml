@@ -1,3 +1,24 @@
 <resources>
-    <string name="app_name">task1</string>
+    <string name="app_name">Хочу помочь</string>
+    <string name="splashScreenLoadingText">Загрузка…</string>
+    <string name="splashScreenSimbirsoftLogo">Логотип Симбирсофт</string>
+    <string name="splashScreenMssLogo">Логотип ХочуПомочь</string>
+    <string name="help_button">Help Button</string>
+    <string name="title_profile">Профиль</string>
+    <string name="title_news">Новости</string>
+    <string name="title_search">Поиск</string>
+    <string name="title_help">Помочь</string>
+    <string name="title_history">История</string>
+    <string name="profile_name">Константинов Денис</string>
+    <string name="birthday_field_name">Дата рождения</string>
+    <string name="birthday_text">01 февраля 1980</string>
+    <string name="field_of_activity_fieldname">Сфера деятельности</string>
+    <string name="field_of_activity_text">Хирургия, травматология</string>
+    <string name="receive_push_notifications">Получать push-уведомления</string>
+    <string name="your_friends">Ваши друзья</string>
+    <string name="friend_name">Дмитрий Валерьевич</string>
+    <string name="profile">Профиль</string>
+    <string name="logout">Выйти из аккаунта</string>
+    <string name="avatar_image">Avatar image</string>
+    <string name="friend_avatar">Friend avatar</string>
 </resources>

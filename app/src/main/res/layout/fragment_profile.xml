@@ -1,0 +1,201 @@
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".ProfileFragment">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/app_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:id="@+id/collapsing_toolbar_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_scrollFlags="scroll|enterAlways|enterAlwaysCollapsed"
+            app:toolbarId="@+id/toolbar">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?android:actionBarSize"
+                android:background="@color/colorPrimary"
+                app:layout_scrollFlags="scroll|enterAlways|enterAlwaysCollapsed"
+                app:menu="@menu/fragment_profile_toolbar">
+
+            </androidx.appcompat.widget.Toolbar>
+
+            <TextView
+                android:id="@+id/profile_tv_toolbar_title"
+                style="@style/OfficinaSansExtraBoldScc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/profile"
+                android:textColor="@color/white"
+                android:textStyle="normal" />
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="@dimen/margin_92dp"
+            tools:context=".ProfileFragment">
+
+            <ImageView
+                android:id="@+id/avatar_image"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/avatar_image"
+                android:scaleType="centerCrop"
+                android:src="@drawable/image_man"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/text_view_profile_name"
+                style="@style/ProfileNameFont"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/profile_default_margin"
+                android:layout_marginTop="@dimen/margin_20dp"
+                android:text="@string/profile_name"
+                android:textColor="@color/black87"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/avatar_image" />
+
+            <TextView
+                android:id="@+id/text_view_birthday"
+                style="@style/ProfileGrayTextFont"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/profile_default_margin"
+                android:layout_marginTop="@dimen/margin_16dp"
+                android:text="@string/birthday_field_name"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/text_view_profile_name" />
+
+            <TextView
+                android:id="@+id/ext_view_birthday_date"
+                style="@style/ProfileDefaultFont"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/profile_default_margin"
+                android:text="@string/birthday_text"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/text_view_birthday" />
+
+            <TextView
+                android:id="@+id/field_of_activity"
+                style="@style/ProfileGrayTextFont"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/profile_default_margin"
+                android:layout_marginTop="@dimen/margin_10dp"
+                android:text="@string/field_of_activity_fieldname"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/ext_view_birthday_date" />
+
+            <TextView
+                android:id="@+id/text_view_activity"
+                style="@style/ProfileDefaultFont"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/profile_default_margin"
+                android:text="@string/field_of_activity_text"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/field_of_activity" />
+
+            <TextView
+                android:id="@+id/text_view_push_notification"
+                style="@style/ProfileDefaultFont"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/profile_default_margin"
+                android:layout_marginTop="@dimen/margin_28dp"
+                android:text="@string/receive_push_notifications"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/text_view_activity" />
+
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/switch_push"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/margin_29dp"
+                android:layout_marginBottom="@dimen/margin_15dp"
+                android:checked="true"
+                app:layout_constraintBaseline_toBaselineOf="@id/text_view_push_notification"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <View
+                android:id="@+id/devider_upper"
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/profile_divider_height_1dp"
+                android:layout_marginTop="@dimen/margin_18dp"
+                android:background="@color/cool_grey"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/text_view_push_notification" />
+
+            <TextView
+                android:id="@+id/text_view_friends"
+                style="@style/ProfileGrayTextFont"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/profile_default_margin"
+                android:layout_marginTop="@dimen/margin_20dp"
+                android:text="@string/your_friends"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/devider_upper" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_view_friends"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/profile_default_margin"
+                android:layout_marginTop="@dimen/margin_6dp"
+                android:layout_marginEnd="@dimen/margin_20dp"
+                android:layout_marginBottom="@dimen/margin_20dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/text_view_friends"
+                tools:listitem="@layout/item_friends" />
+
+            <View
+                android:id="@+id/devider_lower"
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/profile_divider_height_1dp"
+                android:layout_marginTop="@dimen/margin_18dp"
+                android:background="@color/cool_grey"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/recycler_view_friends" />
+
+            <Button
+                android:id="@+id/button_logout"
+                style="@style/ProfileButtonFont"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_20dp"
+                android:gravity="center_vertical"
+                android:text="@string/logout"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/devider_lower" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
