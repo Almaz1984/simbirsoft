@@ -1,4 +1,4 @@
-package com.almaz.task1.adapter
+package com.almaz.task1.adapters.friends
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -8,16 +8,16 @@ import com.almaz.task1.data.model.Friend
 
 class FriendsAdapter(
     private val friendsList: MutableList<Friend> = mutableListOf()
-) : RecyclerView.Adapter<MyViewHolder>() {
+) : RecyclerView.Adapter<FriendsViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FriendsViewHolder {
         val itemView =
             LayoutInflater.from(parent.context)
                 .inflate(R.layout.item_friends, parent, false)
-        return MyViewHolder(itemView)
+        return FriendsViewHolder(itemView)
     }
 
-    override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: FriendsViewHolder, position: Int) {
         holder.bind(friendsList[position])
     }
 

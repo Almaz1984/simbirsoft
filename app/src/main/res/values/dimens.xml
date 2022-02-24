@@ -21,4 +21,18 @@
     <dimen name="margin_40dp">40dp</dimen>
     <dimen name="profile_default_margin">20dp</dimen>
     <dimen name="friend_avatar_size">48dp</dimen>
+    <dimen name="margin_31dp">31dp</dimen>
+    <dimen name="margin_24dp">24dp</dimen>
+    <dimen name="margin_43dp">43dp</dimen>
+    <dimen name="margin_19dp">19dp</dimen>
+    <dimen name="margin_12dp">12dp</dimen>
+    <dimen name="margin_8dp">8dp</dimen>
+    <dimen name="help_category_image_width">120dp</dimen>
+    <dimen name="help_category_image_height">80dp</dimen>
+    <dimen name="help_category_tile_width">168dp</dimen>
+    <dimen name="zero_width">0dp</dimen>
+    <dimen name="camera_icon_size">200dp</dimen>
+    <dimen name="margin_30dp">30dp</dimen>
+    <dimen name="margin_50dp">50dp</dimen>
+    <dimen name="bias_0">0</dimen>
 </resources>
