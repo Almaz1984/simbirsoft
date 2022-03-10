@@ -27,7 +27,7 @@ class ItemViewPagerFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        searchAdapter = SearchAdapter(searchResultList.toMutableList())
+        searchAdapter = SearchAdapter(searchResultList)
         recyclerView = view.findViewById<RecyclerView>(R.id.rv_search_result).apply {
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
             addItemDecoration(
@@ -43,6 +43,6 @@ class ItemViewPagerFragment : Fragment() {
     override fun onPause() {
         super.onPause()
         searchResultList.shuffle()
-        searchAdapter.updateItems(searchResultList)
+        searchAdapter.updateItems()
     }
 }

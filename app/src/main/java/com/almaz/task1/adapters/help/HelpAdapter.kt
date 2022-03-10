@@ -7,7 +7,7 @@ import com.almaz.task1.R
 import com.almaz.task1.data.model.HelpCategory
 
 class HelpAdapter(
-    private val categoryList: List<HelpCategory> = listOf()
+    private val categoryList: List<HelpCategory>
 ) : RecyclerView.Adapter<HelpViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HelpViewHolder {

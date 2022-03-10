@@ -31,8 +31,4 @@ class ChangeImageFragment : DialogFragment() {
         } ?: throw IllegalStateException("Activity cannot be null")
     }
 
-    interface ClickListener {
-        fun takePhoto()
-        fun deletePhoto()
-    }
 }

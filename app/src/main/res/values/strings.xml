@@ -43,4 +43,6 @@
     <string name="camera_dont_ask_button">Настройки</string>
     <string name="camera_icon">Иконка камеры</string>
     <string name="icon_arrow">Иконка со стрелкой</string>
+    <string name="search_tab_label_events">По мероприятиям</string>
+    <string name="search_tab_label_nko">НКО</string>
 </resources>

@@ -8,8 +8,10 @@ import com.almaz.task1.R
 import com.almaz.task1.data.model.SearchResult
 
 class SearchAdapter(
-    private val searchResultList: MutableList<SearchResult> = mutableListOf()
+    private val searchResultList: List<SearchResult>
 ) : RecyclerView.Adapter<SearchViewHolder>() {
+
+    private var _searchResultList = searchResultList.toMutableList()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchViewHolder {
         val itemView =
@@ -19,17 +21,17 @@ class SearchAdapter(
     }
 
     override fun onBindViewHolder(holder: SearchViewHolder, position: Int) {
-        holder.bind(searchResultList[position])
+        holder.bind(_searchResultList[position])
     }
 
     override fun getItemCount(): Int {
-        return searchResultList.size
+        return _searchResultList.size
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    fun updateItems(searchResultList: List<SearchResult>) {
-        this.searchResultList.clear()
-        this.searchResultList.addAll(searchResultList)
+    fun updateItems() {
+        _searchResultList.clear()
+        _searchResultList.addAll(searchResultList)
         notifyDataSetChanged()
     }
 }

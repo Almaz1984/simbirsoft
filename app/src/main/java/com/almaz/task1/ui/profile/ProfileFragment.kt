@@ -20,10 +20,11 @@ import com.almaz.task1.R
 import com.almaz.task1.adapters.friends.FriendsAdapter
 import com.almaz.task1.data.repository.Repository
 import com.almaz.task1.ui.profile.dialogs.ChangeImageFragment
+import com.almaz.task1.ui.profile.dialogs.ClickListener
 import com.almaz.task1.ui.profile.dialogs.DontAskAgainFragment
 import com.almaz.task1.ui.profile.dialogs.RationaleFragment
 
-class ProfileFragment : Fragment(), ChangeImageFragment.ClickListener {
+class ProfileFragment : Fragment(), ClickListener {
 
     private val camera =
         registerForActivityResult(ActivityResultContracts.TakePicturePreview()) { bitmap ->

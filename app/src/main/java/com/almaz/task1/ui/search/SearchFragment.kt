@@ -43,7 +43,7 @@ class SearchFragment : Fragment() {
 
         enumValues<TabTitles>().forEach {
             fragmentAdapter.addFragment(
-                it.title,
+                requireContext().getString(it.title),
                 ItemViewPagerFragment()
             )
         }
@@ -56,8 +56,8 @@ class SearchFragment : Fragment() {
         }.attach()
     }
 
-    enum class TabTitles(val title: String) {
-        EVENTS("По мероприятиям"),
-        NKO("НКО"),
+    enum class TabTitles(val title: Int) {
+        EVENTS(R.string.search_tab_label_events),
+        NKO(R.string.search_tab_label_nko),
     }
 }
