@@ -24,10 +24,13 @@ class HelpFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val helpAdapter = HelpAdapter()
+        helpAdapter.updateItems(Repository.getCategories())
+
         view.findViewById<RecyclerView>(R.id.recycler_view_help_categories).apply {
             layoutManager =
                 GridLayoutManager(context, SPAN_COUNT, GridLayoutManager.VERTICAL, false)
-            adapter = HelpAdapter(Repository.getCategories())
+            adapter = helpAdapter
         }
     }
 

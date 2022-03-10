@@ -14,7 +14,7 @@ class ChangeImageFragment : DialogFragment() {
             val builder = AlertDialog.Builder(it)
             val inflater = requireActivity().layoutInflater
             val dialogView = inflater.inflate(R.layout.fragment_change_image, null)
-            val listener = parentFragment as ClickListener
+            val listener = parentFragment as ProfileImageDialogClickListener
 
             builder.setView(dialogView)
             dialogView.findViewById<LinearLayout>(R.id.take_photo)

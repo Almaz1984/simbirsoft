@@ -1,6 +1,6 @@
 package com.almaz.task1.ui.profile.dialogs
 
-interface ClickListener  {
+interface ProfileImageDialogClickListener  {
     fun takePhoto()
     fun deletePhoto()
 }

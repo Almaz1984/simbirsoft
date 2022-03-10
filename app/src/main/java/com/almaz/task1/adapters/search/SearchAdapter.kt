@@ -7,11 +7,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.almaz.task1.R
 import com.almaz.task1.data.model.SearchResult
 
-class SearchAdapter(
-    private val searchResultList: List<SearchResult>
-) : RecyclerView.Adapter<SearchViewHolder>() {
+class SearchAdapter : RecyclerView.Adapter<SearchViewHolder>() {
 
-    private var _searchResultList = searchResultList.toMutableList()
+    private val _searchResultList: MutableList<SearchResult> = mutableListOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchViewHolder {
         val itemView =
@@ -29,7 +27,7 @@ class SearchAdapter(
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    fun updateItems() {
+    fun updateItems(searchResultList: List<SearchResult>) {
         _searchResultList.clear()
         _searchResultList.addAll(searchResultList)
         notifyDataSetChanged()
