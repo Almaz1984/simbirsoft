@@ -3,6 +3,9 @@ package com.almaz.task1
 import android.content.Context
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentActivity
+import com.almaz.task1.ui.help.HelpFragment
+import com.almaz.task1.ui.profile.ProfileFragment
+import com.almaz.task1.ui.search.SearchFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class BottomNavigationViewHelper {
@@ -23,15 +26,19 @@ class BottomNavigationViewHelper {
                         R.id.navigation_profile -> {
                             transaction.replace(R.id.fragment_container_view, ProfileFragment())
                         }
+                        R.id.navigation_search -> {
+                            transaction.replace(R.id.fragment_container_view, SearchFragment())
+                        }
+                        R.id.navigation_help -> {
+                            transaction.replace(R.id.fragment_container_view, HelpFragment())
+                        }
                     }
                     transaction.commit()
                     true
                 }
 
-                menu.getItem(MainActivity.HELP_MENU_INDEX).isEnabled = false
-                selectedItemId = R.id.navigation_profile
+                selectedItemId = R.id.navigation_help
                 background = ContextCompat.getDrawable(context, android.R.color.transparent)
-
             }
         }
     }

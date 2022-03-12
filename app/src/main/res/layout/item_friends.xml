@@ -8,7 +8,7 @@
     tools:ignore="UseCompoundDrawables">
 
     <ImageView
-        android:id="@+id/text_view_avatar_profile"
+        android:id="@+id/image_view_avatar_profile"
         android:layout_width="@dimen/friend_avatar_size"
         android:layout_height="@dimen/friend_avatar_size"
         android:layout_gravity="start"
