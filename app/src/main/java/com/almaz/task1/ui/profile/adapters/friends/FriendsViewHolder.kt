@@ -1,4 +1,4 @@
-package com.almaz.task1.adapters.friends
+package com.almaz.task1.ui.profile.adapters.friends
 
 import android.annotation.SuppressLint
 import android.view.View

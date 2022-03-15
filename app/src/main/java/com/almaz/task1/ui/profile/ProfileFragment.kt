@@ -2,6 +2,8 @@ package com.almaz.task1.ui.profile
 
 import android.Manifest
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
 import android.provider.Settings
@@ -17,11 +19,11 @@ import androidx.fragment.app.setFragmentResultListener
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.almaz.task1.R
-import com.almaz.task1.adapters.friends.FriendsAdapter
 import com.almaz.task1.data.repository.Repository
+import com.almaz.task1.ui.profile.adapters.friends.FriendsAdapter
 import com.almaz.task1.ui.profile.dialogs.ChangeImageFragment
-import com.almaz.task1.ui.profile.dialogs.ProfileImageDialogClickListener
 import com.almaz.task1.ui.profile.dialogs.DontAskAgainFragment
+import com.almaz.task1.ui.profile.dialogs.ProfileImageDialogClickListener
 import com.almaz.task1.ui.profile.dialogs.RationaleFragment
 
 class ProfileFragment : Fragment(), ProfileImageDialogClickListener {
@@ -43,6 +45,23 @@ class ProfileFragment : Fragment(), ProfileImageDialogClickListener {
                 }
             }
         }
+
+    private val getImage =
+        registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
+            uri?.let {
+                val image = getBitmapFromUri(uri)
+                view?.findViewById<ImageView>(R.id.avatar_image)
+                    ?.setImageBitmap(image)
+            } ?: return@registerForActivityResult
+        }
+
+    private fun getBitmapFromUri(uri: Uri): Bitmap {
+        val parcelFileDescriptor = requireContext().contentResolver.openFileDescriptor(uri, "r")
+        val fileDescriptor = parcelFileDescriptor?.fileDescriptor
+        val image: Bitmap = BitmapFactory.decodeFileDescriptor(fileDescriptor)
+        parcelFileDescriptor?.close()
+        return image
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -66,6 +85,7 @@ class ProfileFragment : Fragment(), ProfileImageDialogClickListener {
                 cameraPermission.launch(Manifest.permission.CAMERA)
             }
         }
+
         setFragmentResultListener(SETTINGS_KEY) { _, bundle ->
             val isWantToOpenSettings = bundle.getBoolean(RESULT_KEY)
             if (isWantToOpenSettings) {
@@ -108,6 +128,10 @@ class ProfileFragment : Fragment(), ProfileImageDialogClickListener {
 
     override fun deletePhoto() {
         view?.findViewById<ImageView>(R.id.avatar_image)?.setImageResource(R.drawable.ic_no_image)
+    }
+
+    override fun choosePhoto() {
+        getImage.launch("image/*")
     }
 
     companion object {

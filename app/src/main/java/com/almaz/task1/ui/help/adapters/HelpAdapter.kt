@@ -1,4 +1,4 @@
-package com.almaz.task1.adapters.help
+package com.almaz.task1.ui.help.adapters
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater

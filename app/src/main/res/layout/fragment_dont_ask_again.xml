@@ -19,7 +19,7 @@
     <TextView
         android:id="@+id/rationale_title"
         style="@style/RationaleTitleFont"
-        android:layout_width="@dimen/zero_width"
+        android:layout_width="@dimen/zero_size"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/margin_30dp"
         android:layout_marginVertical="@dimen/margin_15dp"
@@ -31,7 +31,7 @@
     <TextView
         android:id="@+id/rationale_text"
         style="@style/RationaleTextFont"
-        android:layout_width="@dimen/zero_width"
+        android:layout_width="@dimen/zero_size"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/margin_30dp"
         android:layout_marginTop="@dimen/margin_10dp"

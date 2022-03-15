@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/light_grey_two"
+    android:orientation="vertical"
+    tools:context=".ui.news.FilterFragment">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/news_filters_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?android:actionBarSize"
+        android:background="@color/colorPrimary"
+        app:menu="@menu/news_filter_toolbar"
+        app:navigationIcon="@drawable/ic_back">
+
+        <TextView
+            android:id="@+id/news_filter_toolbar_title"
+            style="@style/ToolbarFont"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/news_filter_toolbar_text" />
+    </androidx.appcompat.widget.Toolbar>
+
+    <TextView
+        android:id="@+id/filter_title"
+        style="@style/NewsFiltersTitleFont"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="@dimen/margin_20dp"
+        android:layout_marginStart="@dimen/margin_20dp"
+        android:fontFamily="@font/roboto_regular"
+        android:text="@string/filter_title" />
+
+    <View
+        android:id="@+id/devider_upper"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/profile_divider_height_1dp"
+        android:background="@color/cool_grey" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view_news_filter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:paddingStart="@dimen/margin_20dp"
+        tools:ignore="RtlSymmetry"
+        tools:itemCount="5"
+        tools:listitem="@layout/item_news_filter" />
+
+    <View
+        android:id="@+id/devider_lower"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/profile_divider_height_1dp"
+        android:background="@color/cool_grey" />
+
+</LinearLayout>

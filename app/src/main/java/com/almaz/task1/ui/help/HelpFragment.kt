@@ -5,11 +5,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.almaz.task1.R
-import com.almaz.task1.adapters.help.HelpAdapter
-import com.almaz.task1.data.repository.Repository
+import com.almaz.task1.ui.help.adapters.HelpAdapter
+import com.almaz.task1.utils.JsonHelper
 
 class HelpFragment : Fragment() {
 
@@ -25,7 +26,7 @@ class HelpFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val helpAdapter = HelpAdapter()
-        helpAdapter.updateItems(Repository.getCategories())
+        helpAdapter.updateItems(JsonHelper.getCategories(context as FragmentActivity))
 
         view.findViewById<RecyclerView>(R.id.recycler_view_help_categories).apply {
             layoutManager =

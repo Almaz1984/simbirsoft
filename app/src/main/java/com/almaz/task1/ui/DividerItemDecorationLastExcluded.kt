@@ -1,4 +1,4 @@
-package com.almaz.task1.ui.search
+package com.almaz.task1.ui
 
 import android.content.Context
 import android.graphics.Rect

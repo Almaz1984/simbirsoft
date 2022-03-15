@@ -9,8 +9,9 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.almaz.task1.R
-import com.almaz.task1.adapters.search.SearchAdapter
 import com.almaz.task1.data.repository.Repository
+import com.almaz.task1.ui.DividerItemDecorationLastExcluded
+import com.almaz.task1.ui.search.adapters.SearchAdapter
 
 class ItemViewPagerFragment : Fragment() {
     private val searchResultList = Repository.getSearchResults()

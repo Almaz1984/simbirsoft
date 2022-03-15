@@ -1,9 +1,11 @@
 package com.almaz.task1
 
 import android.content.Context
-import androidx.core.content.ContextCompat
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import androidx.fragment.app.FragmentActivity
 import com.almaz.task1.ui.help.HelpFragment
+import com.almaz.task1.ui.news.NewsFragment
 import com.almaz.task1.ui.profile.ProfileFragment
 import com.almaz.task1.ui.search.SearchFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -11,12 +13,13 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 class BottomNavigationViewHelper {
 
     companion object {
+        private lateinit var bottomNavigationView: BottomNavigationView
 
         fun setupBottomNavigationView(
             context: Context,
             bottomNavigationView: BottomNavigationView
         ) {
-            bottomNavigationView.apply {
+            this.bottomNavigationView = bottomNavigationView.apply {
 
                 setOnItemSelectedListener { menuItem ->
                     val transaction =
@@ -32,14 +35,24 @@ class BottomNavigationViewHelper {
                         R.id.navigation_help -> {
                             transaction.replace(R.id.fragment_container_view, HelpFragment())
                         }
+                        R.id.navigation_news -> {
+                            transaction.replace(R.id.fragment_container_view, NewsFragment())
+                        }
                     }
                     transaction.commit()
                     true
                 }
 
                 selectedItemId = R.id.navigation_help
-                background = ContextCompat.getDrawable(context, android.R.color.transparent)
             }
+        }
+
+        fun hideBottomNavigationView() {
+            bottomNavigationView.visibility = GONE
+        }
+
+        fun showBottomNavigationView() {
+            bottomNavigationView.visibility = VISIBLE
         }
     }
 }

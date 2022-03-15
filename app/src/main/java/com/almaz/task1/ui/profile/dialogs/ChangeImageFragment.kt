@@ -17,18 +17,25 @@ class ChangeImageFragment : DialogFragment() {
             val listener = parentFragment as ProfileImageDialogClickListener
 
             builder.setView(dialogView)
-            dialogView.findViewById<LinearLayout>(R.id.take_photo)
-                .setOnClickListener {
-                    listener.takePhoto()
-                    dismiss()
-                }
-            dialogView.findViewById<LinearLayout>(R.id.delete)
-                .setOnClickListener {
-                    listener.deletePhoto()
-                    dismiss()
-                }
+            dialogView.apply {
+                findViewById<LinearLayout>(R.id.take_photo)
+                    .setOnClickListener {
+                        listener.takePhoto()
+                        dismiss()
+                    }
+                findViewById<LinearLayout>(R.id.delete)
+                    .setOnClickListener {
+                        listener.deletePhoto()
+                        dismiss()
+                    }
+                findViewById<LinearLayout>(R.id.choose_photo)
+                    .setOnClickListener {
+                        listener.choosePhoto()
+                        dismiss()
+                    }
+            }
+
             builder.create()
         } ?: throw IllegalStateException("Activity cannot be null")
     }
-
 }
