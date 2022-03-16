@@ -21,7 +21,5 @@ class NewsAdapter(
         holder.bind(currentList[position])
     }
 
-    override fun getItemCount(): Int {
-        return currentList.size
-    }
+    override fun getItemCount() = currentList.size
 }

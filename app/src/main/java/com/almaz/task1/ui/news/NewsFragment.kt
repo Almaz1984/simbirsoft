@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.Toolbar
@@ -38,15 +39,19 @@ class NewsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         preferences = activity?.getPreferences(Context.MODE_PRIVATE) ?: return
-        preferences.registerOnSharedPreferenceChangeListener(onSharedPreferenceChangeListener)
         setupRecyclerView(view)
         setupToolbar(view)
         loadFilterSettings()
         updateNews()
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
+    override fun onStart() {
+        super.onStart()
+        preferences.registerOnSharedPreferenceChangeListener(onSharedPreferenceChangeListener)
+    }
+
+    override fun onStop() {
+        super.onStop()
         preferences.unregisterOnSharedPreferenceChangeListener(onSharedPreferenceChangeListener)
     }
 
@@ -78,18 +83,20 @@ class NewsFragment : Fragment() {
 
     private fun setupToolbar(view: View) {
         view.findViewById<Toolbar>(R.id.news_toolbar).apply {
-            setOnMenuItemClickListener { menuItem ->
-                when (menuItem.itemId) {
-                    R.id.action_filter -> {
-                        parentFragmentManager.beginTransaction()
-                            .add(R.id.fragment_container_view, FilterFragment())
-                            .addToBackStack(null)
-                            .commit()
-                    }
-                }
-                true
+            setOnMenuItemClickListener(menuItemClickListener())
+        }
+    }
+
+    private fun menuItemClickListener() = { menuItem: MenuItem ->
+        when (menuItem.itemId) {
+            R.id.action_filter -> {
+                parentFragmentManager.beginTransaction()
+                    .replace(R.id.fragment_container_view, FilterFragment())
+                    .addToBackStack(null)
+                    .commit()
             }
         }
+        true
     }
 
     private fun loadFilterSettings() {

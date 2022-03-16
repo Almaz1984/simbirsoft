@@ -131,7 +131,7 @@ class ProfileFragment : Fragment(), ProfileImageDialogClickListener {
     }
 
     override fun choosePhoto() {
-        getImage.launch("image/*")
+        getImage.launch(IMAGE_TYPE)
     }
 
     companion object {
@@ -139,5 +139,6 @@ class ProfileFragment : Fragment(), ProfileImageDialogClickListener {
         const val RATIONALE_KEY = "rationale_tag"
         const val SETTINGS_KEY = "settings_tag"
         const val RESULT_KEY = "camera_result_key"
+        const val IMAGE_TYPE = "image/*"
     }
 }

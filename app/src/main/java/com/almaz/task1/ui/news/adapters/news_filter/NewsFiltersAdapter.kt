@@ -9,7 +9,7 @@ import com.almaz.task1.data.model.NewsFilter
 
 class NewsFiltersAdapter : RecyclerView.Adapter<NewsFilterViewHolder>() {
 
-    private val _newsFiltersList: MutableList<NewsFilter> = mutableListOf()
+    private val newsFiltersList: MutableList<NewsFilter> = mutableListOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NewsFilterViewHolder {
         val itemView =
@@ -19,20 +19,18 @@ class NewsFiltersAdapter : RecyclerView.Adapter<NewsFilterViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: NewsFilterViewHolder, position: Int) {
-        holder.bind(_newsFiltersList[position])
+        holder.bind(newsFiltersList[position])
     }
 
-    override fun getItemCount(): Int {
-        return _newsFiltersList.size
-    }
+    override fun getItemCount() = newsFiltersList.size
 
     @SuppressLint("NotifyDataSetChanged")
     fun updateItems(newsFiltersList: List<NewsFilter>) {
-        _newsFiltersList.clear()
-        _newsFiltersList.addAll(newsFiltersList)
+        this.newsFiltersList.clear()
+        this.newsFiltersList.addAll(newsFiltersList)
         notifyDataSetChanged()
     }
 
     fun getFiltersList(): Map<String, Boolean> =
-        this._newsFiltersList.associate { it.category to it.isChecked }
+        this.newsFiltersList.associate { it.category to it.isChecked }
 }

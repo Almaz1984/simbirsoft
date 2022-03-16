@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.Toolbar
@@ -40,17 +41,19 @@ class FilterFragment : Fragment() {
 
     private fun setupToolbar(view: View) {
         view.findViewById<Toolbar>(R.id.news_filters_toolbar).apply {
-            setOnMenuItemClickListener { menuItem ->
-                when (menuItem.itemId) {
-                    R.id.action_confirm -> {
-                        saveFilterSettings()
-                        (context as FragmentActivity).onBackPressed()
-                    }
-                }
-                true
-            }
+            setOnMenuItemClickListener(menuItemClickListener())
             setNavigationOnClickListener { (context as FragmentActivity).onBackPressed() }
         }
+    }
+
+    private fun menuItemClickListener() = { menuItem: MenuItem ->
+        when (menuItem.itemId) {
+            R.id.action_confirm -> {
+                saveFilterSettings()
+                (context as FragmentActivity).onBackPressed()
+            }
+        }
+        true
     }
 
     private fun setupRecyclerView(view: View) {

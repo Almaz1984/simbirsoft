@@ -65,7 +65,7 @@ class NewsDetailFragment : Fragment() {
             findViewById<TextView>(R.id.news_detail_phones).apply {
                 text = news.phone
             }
-            findViewById<ImageView>(R.id.news_detail_image_1).apply {
+            findViewById<ImageView>(R.id.news_detail_main_image).apply {
                 setImageDrawable(context.getDrawable(news.image))
             }
             findViewById<TextView>(R.id.news_detail_description).apply {

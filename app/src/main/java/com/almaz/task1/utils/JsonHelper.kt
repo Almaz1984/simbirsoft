@@ -1,6 +1,7 @@
 package com.almaz.task1.utils
 
 import android.content.Context
+import com.almaz.task1.data.mapper.NewsMapper
 import com.almaz.task1.data.model.HelpCategory
 import com.almaz.task1.data.model.News
 import com.almaz.task1.data.model.NewsRaw
@@ -20,7 +21,8 @@ object JsonHelper {
         val newsAdapter = moshi.adapter<List<NewsRaw>>(typeNews)
         val jsonNews = getJsonFromAssets(context, NEWS_FILE)
         val newsRaw = newsAdapter.fromJson(jsonNews) ?: listOf()
-        return newsRaw.map { it.mapToNews() }
+        val newsMapper = NewsMapper()
+        return newsRaw.map { newsMapper.transform(it) }
     }
 
     fun getCategories(context: Context): List<HelpCategory> {

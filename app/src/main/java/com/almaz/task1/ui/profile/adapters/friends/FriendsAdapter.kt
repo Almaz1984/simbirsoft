@@ -21,7 +21,5 @@ class FriendsAdapter(
         holder.bind(friendsList[position])
     }
 
-    override fun getItemCount(): Int {
-        return friendsList.size
-    }
+    override fun getItemCount() = friendsList.size
 }
