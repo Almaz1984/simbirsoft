@@ -1,0 +1,22 @@
+[
+  {
+    "category": "Дети",
+    "picture": "category_kids"
+  },
+  {
+    "category": "Взрослые",
+    "picture": "category_adults"
+  },
+  {
+    "category": "Пожилые",
+    "picture": "category_elderly"
+  },
+  {
+    "category": "Животные",
+    "picture": "category_pets"
+  },
+  {
+    "category": "Мероприятия",
+    "picture": "category_events"
+  }
+]

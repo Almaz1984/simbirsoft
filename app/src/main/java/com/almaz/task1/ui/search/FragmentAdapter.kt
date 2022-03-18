@@ -8,20 +8,14 @@ class FragmentAdapter(fragment: Fragment) :
     private val fragments = mutableListOf<Fragment>()
     private val fragmentTitles = mutableListOf<String>()
 
-    override fun getItemCount(): Int {
-        return fragments.size
-    }
+    override fun getItemCount() = fragments.size
 
-    override fun createFragment(position: Int): Fragment {
-        return fragments[position]
-    }
+    override fun createFragment(position: Int) = fragments[position]
 
     fun addFragment(title: String, fragment: Fragment) {
         fragments.add(fragment)
         fragmentTitles.add(title)
     }
 
-    fun getTitles(): List<String> {
-        return fragmentTitles
-    }
+    fun getTitles() = fragmentTitles
 }

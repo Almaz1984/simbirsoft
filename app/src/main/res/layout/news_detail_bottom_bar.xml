@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/off_white"
+    android:orientation="horizontal">
+
+    <TextView
+        style="@style/NewsDetailBottomBarFont"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:drawablePadding="@dimen/padding_9dp"
+        android:text="@string/news_detail_button_shirt_text"
+        app:drawableTopCompat="@drawable/ic_shirt" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:src="@drawable/separator"
+        tools:ignore="ContentDescription" />
+
+    <TextView
+        style="@style/NewsDetailBottomBarFont"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:drawablePadding="@dimen/padding_9dp"
+        android:text="@string/news_detail_button_hands_text"
+        app:drawableTopCompat="@drawable/ic_hands" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:src="@drawable/separator"
+        tools:ignore="ContentDescription" />
+
+    <TextView
+        style="@style/NewsDetailBottomBarFont"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:drawablePadding="@dimen/padding_9dp"
+        android:text="@string/news_detail_button_tools_text"
+        app:drawableTopCompat="@drawable/ic_tools" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:src="@drawable/separator"
+        tools:ignore="ContentDescription" />
+
+    <TextView
+        style="@style/NewsDetailBottomBarFont"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:drawablePadding="@dimen/padding_9dp"
+        android:text="@string/news_detail_button_coins_text"
+        app:drawableTopCompat="@drawable/ic_coins" />
+</LinearLayout>

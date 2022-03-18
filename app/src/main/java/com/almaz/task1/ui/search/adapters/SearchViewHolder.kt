@@ -1,4 +1,4 @@
-package com.almaz.task1.adapters.search
+package com.almaz.task1.ui.search.adapters
 
 import android.view.View
 import android.widget.TextView

@@ -16,13 +16,13 @@
     <string name="receive_push_notifications">Получать push-уведомления</string>
     <string name="your_friends">Ваши друзья</string>
     <string name="friend_name">Дмитрий Валерьевич</string>
-    <string name="profile">Профиль</string>
+    <string name="profile_toolbar_text">Профиль</string>
     <string name="logout">Выйти из аккаунта</string>
     <string name="avatar_image">Фото профиля</string>
     <string name="friend_avatar">Фото друга</string>
     <string name="canceled">Действие отменено</string>
     <string name="access_denied">Доступ к камере запрещен</string>
-    <string name="help">Помочь</string>
+    <string name="help_toolbar_text">Помочь</string>
     <string name="help_category_image">Картинка из раздела помощи</string>
     <string name="kids">Дети</string>
     <string name="dialog_choose_photo">Выбрать фото</string>
@@ -45,4 +45,17 @@
     <string name="icon_arrow">Иконка со стрелкой</string>
     <string name="search_tab_label_events">По мероприятиям</string>
     <string name="search_tab_label_nko">НКО</string>
+    <string name="news_toolbar_text">Новости</string>
+    <string name="open_filter_description">Открыть фильтр</string>
+    <string name="news_title_text">Спонсоры отремонтируют школу-интернат</string>
+    <string name="filter_title">Категории помощи</string>
+    <string name="news_filter_toolbar_text">Фильтр</string>
+    <string name="write_email"><u>Напишите нам</u></string>
+    <string name="go_to_website"><u>Перейти на сайт организации</u></string>
+    <string name="users_count">+102</string>
+    <string name="news_detail_button_shirt_text">Помочь\nвещами</string>
+    <string name="news_detail_button_hands_text">Стать\nволонтером</string>
+    <string name="news_detail_button_tools_text">Проф.\nпомощь</string>
+    <string name="news_detail_button_coins_text">Помочь\nденьгами</string>
+    <string name="news_detail_email_text">У вас есть вопросы?</string>
 </resources>

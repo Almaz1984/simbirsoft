@@ -21,7 +21,7 @@
         <item name="android:background">@color/cool_grey</item>
     </style>
 
-    <style name="OfficinaSansExtraBoldScc">
+    <style name="ToolbarFont">
         <item name="android:gravity">center_horizontal</item>
         <item name="android:textSize">21sp</item>
         <item name="fontFamily">@font/officina_sans_extra_bold_scc</item>
@@ -29,17 +29,17 @@
     </style>
 
     <style name="ProfileDefaultFont">
-        <item name="android:gravity">left</item>
+        <item name="android:gravity">start</item>
         <item name="fontFamily">@font/roboto_regular</item>
         <item name="android:textColor">@color/black</item>
         <item name="android:textSize">16sp</item>
     </style>
 
-    <style name="ProfileNameFont">parent="ProfileFont">
+    <style name="ProfileNameFont">parent="ProfileDefaultFont">
         <item name="android:textSize">24sp</item>
     </style>
 
-    <style name="ProfileGrayTextFont">parent="ProfileFont">
+    <style name="ProfileGrayTextFont">parent="ProfileDefaultFont">
         <item name="android:textSize">12sp</item>
         <item name="android:textColor">@color/black38</item>
         <item name="android:lineSpacingExtra">4sp</item>
@@ -47,7 +47,7 @@
     </style>
 
     <style name="ProfileButtonFont">
-        <item name="android:gravity">left</item>
+        <item name="android:gravity">start</item>
         <item name="android:textSize">14sp</item>
         <item name="fontFamily">@font/roboto_medium</item>
         <item name="android:textColor">@color/white</item>
@@ -68,7 +68,7 @@
     </style>
 
     <style name="ChangeImageFont">
-        <item name="android:gravity">left</item>
+        <item name="android:gravity">start</item>
         <item name="fontFamily">@font/roboto_regular</item>
         <item name="android:textColor">@color/black87</item>
         <item name="android:textSize">22sp</item>
@@ -108,5 +108,78 @@
         <item name="android:textStyle">normal</item>
     </style>
 
+    <style name="NewsTitleFont">
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">23sp</item>
+        <item name="fontFamily">@font/officina_sans_extra_bold_scc</item>
+        <item name="android:textColor">@color/blue_grey</item>
+    </style>
+
+    <style name="NewsDescriptionFont">
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">14sp</item>
+        <item name="fontFamily">@font/roboto_regular</item>
+        <item name="android:lineSpacingExtra">6sp</item>
+        <item name="android:textColor">@color/black70</item>
+    </style>
+
+    <style name="NewsDateFont">
+        <item name="android:gravity">start</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">12sp</item>
+        <item name="fontFamily">@font/roboto_regular</item>
+        <item name="android:lineSpacingExtra">4sp</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="NewsFiltersTitleFont">
+        <item name="android:gravity">start</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">14sp</item>
+        <item name="fontFamily">@font/roboto_regular</item>
+        <item name="android:lineSpacingExtra">6sp</item>
+        <item name="android:textColor">@color/black70</item>
+    </style>
+
+    <style name="NewsFilterFont">
+        <item name="android:gravity">start</item>
+        <item name="android:textSize">16sp</item>
+        <item name="fontFamily">@font/roboto_regular</item>
+        <item name="android:textColor">@color/black87</item>
+    </style>
+
+    <style name="NewsDetailDateFont">
+        <item name="android:gravity">start</item>
+        <item name="android:textSize">12sp</item>
+        <item name="fontFamily">@font/roboto_regular</item>
+        <item name="android:textColor">@color/grey</item>
+    </style>
+
+    <style name="NewsDetailFont">
+        <item name="android:gravity">start</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">14sp</item>
+        <item name="fontFamily">@font/roboto_regular</item>
+        <item name="android:lineSpacingExtra">6sp</item>
+        <item name="android:textColor">@color/black70</item>
+    </style>
+
+    <style name="NewsDetailFundNameFont">
+        <item name="android:gravity">start</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">12sp</item>
+        <item name="fontFamily">@font/roboto_regular</item>
+        <item name="android:lineSpacingExtra">6sp</item>
+        <item name="android:textColor">@color/black60</item>
+    </style>
+
+    <style name="NewsDetailBottomBarFont">
+        <item name="android:gravity">center</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">10sp</item>
+        <item name="fontFamily">@font/roboto_regular</item>
+        <item name="android:textColor">@color/black40</item>
+    </style>
 
 </resources>

@@ -8,7 +8,7 @@
     <TextView
         android:id="@+id/search_result"
         style="@style/EventTitleFont"
-        android:layout_width="@dimen/zero_width"
+        android:layout_width="@dimen/zero_size"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margin_18dp"
         android:layout_marginTop="@dimen/margin_18dp"

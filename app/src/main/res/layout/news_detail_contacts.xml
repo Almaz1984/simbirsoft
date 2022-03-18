@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="@layout/news_detail">
+
+    <TextView
+        android:id="@+id/news_detail_fund_name"
+        style="@style/NewsDetailFundNameFont"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_11dp"
+        app:layout_constraintStart_toStartOf="@id/start_guideline"
+        app:layout_constraintTop_toBottomOf="@id/news_detail_date"
+        tools:text="Благотворительный Фонд «Счастливый Мир»" />
+
+    <ImageView
+        android:id="@+id/news_detail_address_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_15dp"
+        android:src="@drawable/ic_message"
+        app:layout_constraintStart_toStartOf="@id/start_guideline"
+        app:layout_constraintTop_toBottomOf="@id/news_detail_fund_name"
+        tools:ignore="ContentDescription" />
+
+    <TextView
+        android:id="@+id/news_detail_address"
+        style="@style/NewsDetailFont"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_10dp"
+        android:layout_marginTop="@dimen/margin_15dp"
+        app:layout_constraintStart_toEndOf="@id/news_detail_address_icon"
+        app:layout_constraintTop_toBottomOf="@id/news_detail_fund_name"
+        tools:text="Санкт-Петербург, Кирочная улица, \nд. 50А, каб. 208" />
+
+    <ImageView
+        android:id="@+id/news_detail_phone_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_15dp"
+        android:src="@drawable/ic_phone"
+        app:layout_constraintStart_toStartOf="@id/start_guideline"
+        app:layout_constraintTop_toBottomOf="@id/news_detail_address"
+        tools:ignore="ContentDescription" />
+
+    <TextView
+        android:id="@+id/news_detail_phones"
+        style="@style/NewsDetailFont"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_10dp"
+        android:layout_marginTop="@dimen/margin_15dp"
+        app:layout_constraintStart_toEndOf="@id/news_detail_phone_icon"
+        app:layout_constraintTop_toBottomOf="@id/news_detail_address"
+        tools:text="+7 (937) 037 37-73 \n+7 (937) 016 16-16" />
+
+    <ImageView
+        android:id="@+id/news_detail_mail_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_15dp"
+        android:src="@drawable/ic_mail"
+        app:layout_constraintStart_toStartOf="@id/start_guideline"
+        app:layout_constraintTop_toBottomOf="@id/news_detail_phones"
+        tools:ignore="ContentDescription" />
+
+    <TextView
+        android:id="@+id/news_detail_email_text"
+        style="@style/NewsDetailFont"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_10dp"
+        android:text="@string/news_detail_email_text"
+        app:layout_constraintBottom_toBottomOf="@id/news_detail_mail_icon"
+        app:layout_constraintStart_toEndOf="@id/news_detail_mail_icon"
+        app:layout_constraintTop_toTopOf="@id/news_detail_mail_icon" />
+
+    <TextView
+        android:id="@+id/news_detail_company_email"
+        style="@style/NewsDetailFont"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_6dp"
+        android:text="@string/write_email"
+        android:textColor="@color/colorPrimary"
+        app:layout_constraintBottom_toBottomOf="@id/news_detail_email_text"
+        app:layout_constraintStart_toEndOf="@id/news_detail_email_text"
+        app:layout_constraintTop_toTopOf="@id/news_detail_email_text" />
+</merge>

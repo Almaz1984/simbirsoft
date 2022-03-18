@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="@layout/news_detail">
+
+    <ImageView
+        android:id="@+id/news_detail_main_image"
+        android:layout_width="@dimen/zero_size"
+        android:layout_height="@dimen/news_detail_main_image_height"
+        android:layout_marginTop="@dimen/margin_19dp"
+        android:layout_marginEnd="@dimen/margin_10dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/news_1"
+        app:layout_constraintEnd_toStartOf="@id/news_detail_extra_image_upper"
+        app:layout_constraintStart_toStartOf="@id/start_guideline"
+        app:layout_constraintTop_toBottomOf="@id/news_detail_mail_icon"
+        tools:ignore="ContentDescription" />
+
+    <ImageView
+        android:id="@+id/news_detail_extra_image_upper"
+        android:layout_width="@dimen/news_detail_other_image_width"
+        android:layout_height="@dimen/news_detail_other_image_height"
+        android:scaleType="centerCrop"
+        android:src="@drawable/news_2"
+        app:layout_constraintEnd_toStartOf="@id/end_guideline"
+        app:layout_constraintTop_toTopOf="@id/news_detail_main_image"
+        tools:ignore="ContentDescription" />
+
+    <ImageView
+        android:id="@+id/news_detail_extra_image_lower"
+        android:layout_width="@dimen/news_detail_other_image_width"
+        android:layout_height="@dimen/news_detail_other_image_height"
+        android:layout_marginStart="@dimen/margin_10dp"
+        android:layout_marginTop="@dimen/margin_10dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/news_3"
+        app:layout_constraintEnd_toStartOf="@id/end_guideline"
+        app:layout_constraintStart_toEndOf="@id/news_detail_main_image"
+        app:layout_constraintTop_toBottomOf="@id/news_detail_extra_image_upper"
+        tools:ignore="ContentDescription" />
+
+    <TextView
+        android:id="@+id/news_detail_description"
+        style="@style/NewsDetailFont"
+        android:layout_width="@dimen/zero_size"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_20dp"
+        app:layout_constraintEnd_toStartOf="@id/end_guideline"
+        app:layout_constraintStart_toStartOf="@id/start_guideline"
+        app:layout_constraintTop_toBottomOf="@id/news_detail_main_image"
+        tools:text="Участники и болельщики смогли весело и активно провести время на «Петербургском благотворительном марафоне» и при этом финансово поучаствовать в помощи детям.\n\nПри этом финансово поучаствовать в помощи детям. При этом финансово поучаствовать в помощи детям." />
+
+    <TextView
+        android:id="@+id/news_detail_company_website"
+        style="@style/NewsDetailFont"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_20dp"
+        android:text="@string/go_to_website"
+        android:textColor="@color/colorPrimary"
+        app:layout_constraintStart_toStartOf="@id/start_guideline"
+        app:layout_constraintTop_toBottomOf="@id/news_detail_description" />
+</merge>

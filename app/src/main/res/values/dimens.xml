@@ -30,9 +30,24 @@
     <dimen name="help_category_image_width">120dp</dimen>
     <dimen name="help_category_image_height">80dp</dimen>
     <dimen name="help_category_tile_width">168dp</dimen>
-    <dimen name="zero_width">0dp</dimen>
+    <dimen name="zero_size">0dp</dimen>
     <dimen name="camera_icon_size">200dp</dimen>
     <dimen name="margin_30dp">30dp</dimen>
     <dimen name="margin_50dp">50dp</dimen>
     <dimen name="bias_0">0</dimen>
+    <dimen name="margin_23dp">23dp</dimen>
+    <dimen name="margin_4dp">4dp</dimen>
+    <dimen name="margin_212dp">212dp</dimen>
+    <dimen name="news_corner_radius">2dp</dimen>
+    <dimen name="margin_32dp">32dp</dimen>
+    <dimen name="margin_106dp">106dp</dimen>
+    <dimen name="news_detail_main_image_height">158dp</dimen>
+    <dimen name="news_detail_other_image_width">105dp</dimen>
+    <dimen name="news_detail_other_image_height">74dp</dimen>
+    <dimen name="news_detail_user_image_width">36dp</dimen>
+    <dimen name="news_detail_user_image_height">36dp</dimen>
+    <dimen name="padding_9dp">9dp</dimen>
+    <dimen name="margin_11dp">11dp</dimen>
+    <dimen name="margin_26dp">26dp</dimen>
+    <dimen name="margin_9dp">9dp</dimen>
 </resources>

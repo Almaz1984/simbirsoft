@@ -1,4 +1,4 @@
-package com.almaz.task1.adapters.friends
+package com.almaz.task1.ui.profile.adapters.friends
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -21,7 +21,5 @@ class FriendsAdapter(
         holder.bind(friendsList[position])
     }
 
-    override fun getItemCount(): Int {
-        return friendsList.size
-    }
+    override fun getItemCount() = friendsList.size
 }
