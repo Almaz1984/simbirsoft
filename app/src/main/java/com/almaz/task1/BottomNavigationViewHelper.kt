@@ -19,6 +19,12 @@ class BottomNavigationViewHelper {
 
         private lateinit var bottomNavigationView: BottomNavigationView
         private lateinit var fragmentManager: FragmentManager
+        private val fragments = mapOf(
+            R.id.navigation_profile to ProfileFragment(),
+            R.id.navigation_search to SearchFragment(),
+            R.id.navigation_help to HelpFragment(),
+            R.id.navigation_news to NewsFragment()
+        )
 
         fun setupBottomNavigationView(
             context: Context,
@@ -32,13 +38,7 @@ class BottomNavigationViewHelper {
         }
 
         private fun itemSelectedListener() = { menuItem: MenuItem ->
-
-            when (menuItem.itemId) {
-                R.id.navigation_profile -> showFragment(ProfileFragment())
-                R.id.navigation_search -> showFragment(SearchFragment())
-                R.id.navigation_help -> showFragment(HelpFragment())
-                R.id.navigation_news -> showFragment(NewsFragment())
-            }
+            fragments[menuItem.itemId]?.let { showFragment(it) }
             true
         }
 

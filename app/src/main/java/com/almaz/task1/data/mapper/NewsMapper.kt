@@ -4,23 +4,23 @@ import com.almaz.task1.data.model.News
 import com.almaz.task1.data.model.NewsRaw
 import com.almaz.task1.utils.TimeUtils
 
-class NewsMapper : Mapper<NewsRaw, News> {
+class NewsMapper : (NewsRaw) -> News() {
 
-    override fun transform(src: NewsRaw): News {
-        val formattedDate = when (src.date) {
-            null -> TimeUtils.getFormattedRangeDate(src.dateStart, src.dateEnd)
-            else -> TimeUtils.getFormattedDate(src.date)
+    override fun invoke(newsRaw: NewsRaw): News {
+        val formattedDate = when (newsRaw.date) {
+            null -> TimeUtils.getFormattedRangeDate(newsRaw.dateStart, newsRaw.dateEnd)
+            else -> TimeUtils.getFormattedDate(newsRaw.date)
         }
         return News(
-            src.id ?: 0,
-            src.title ?: "",
-            src.fundName ?: "",
-            src.description ?: "",
-            src.address ?: "",
-            src.phone ?: "",
+            newsRaw.id ?: 0,
+            newsRaw.title ?: "",
+            newsRaw.fundName ?: "",
+            newsRaw.description ?: "",
+            newsRaw.address ?: "",
+            newsRaw.phone ?: "",
             formattedDate,
-            src.categories ?: listOf(),
-            src.image ?: "",
+            newsRaw.categories ?: listOf(),
+            newsRaw.image ?: "",
         )
     }
 }

@@ -32,5 +32,5 @@ class NewsFiltersAdapter : RecyclerView.Adapter<NewsFilterViewHolder>() {
     }
 
     fun getFiltersList(): Map<String, Boolean> =
-        this.newsFiltersList.associate { it.category to it.isChecked }
+        newsFiltersList.associate { it.category to it.isChecked }
 }

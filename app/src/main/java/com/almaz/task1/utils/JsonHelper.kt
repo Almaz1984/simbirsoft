@@ -22,7 +22,7 @@ object JsonHelper {
         val jsonNews = getJsonFromAssets(context, NEWS_FILE)
         val newsRaw = newsAdapter.fromJson(jsonNews) ?: listOf()
         val newsMapper = NewsMapper()
-        return newsRaw.map { newsMapper.transform(it) }
+        return newsRaw.map(newsMapper)
     }
 
     fun getCategories(context: Context): List<HelpCategory> {
