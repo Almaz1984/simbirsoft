@@ -20,7 +20,8 @@ object TimeUtils {
         val parsedStartDate = LocalDate.parse(startDate, dateFormat)
         val parsedEndDate = LocalDate.parse(endDate, dateFormat)
         val currentDate = LocalDate.now()
-        val daysLeft: ULong = ChronoUnit.DAYS.between(currentDate, parsedEndDate).toULong()
+        val daysLeft: Long =
+            ChronoUnit.DAYS.between(currentDate, parsedEndDate).takeIf { it > 0 } ?: 0
         val formatter: DateTimeFormatter = DateTimeFormatter.ofPattern(DATE_FORMATTER_PATTERN)
 
         return "Осталось $daysLeft дней " +
