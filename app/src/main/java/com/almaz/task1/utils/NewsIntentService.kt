@@ -21,7 +21,6 @@ class NewsIntentService : IntentService("NewsIntentService") {
     }
 
     companion object {
-        const val SLEEP_TIME = 5000L
         const val ACTION_NEWS_UPDATE = "ACTION_NEWS_UPDATE"
         const val NEWS_KEY_OUT = "NEWS_KEY_OUT"
     }

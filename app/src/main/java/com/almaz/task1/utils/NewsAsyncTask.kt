@@ -35,7 +35,6 @@ class NewsAsyncTask(
 
     companion object {
         private var instance: NewsAsyncTask? = null
-        private const val SLEEP_TIME = 5000L
 
         fun getInstance(fragment: WeakReference<Fragment>): NewsAsyncTask {
             when (instance) {

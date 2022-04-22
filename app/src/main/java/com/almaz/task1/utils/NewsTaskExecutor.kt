@@ -20,7 +20,7 @@ class NewsTaskExecutor(
     fun execute() {
         executor.execute {
             try {
-                Thread.sleep(5000)
+                Thread.sleep(SLEEP_TIME)
                 val newsList = fragment?.get()?.context?.let { JsonHelper.getNews(it) }
                 postOnUiThread { (fragment?.get() as NewsFragment).updateNews(newsList) }
             } catch (e: InterruptedException) {
