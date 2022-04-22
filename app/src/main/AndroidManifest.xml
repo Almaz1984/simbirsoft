@@ -42,6 +42,8 @@
                 android:name="android.app.searchable"
                 android:resource="@xml/searchable" />
         </activity>
+        <service android:name=".utils.CategoriesIntentService" />
+        <service android:name=".utils.NewsIntentService" />
     </application>
 
 </manifest>

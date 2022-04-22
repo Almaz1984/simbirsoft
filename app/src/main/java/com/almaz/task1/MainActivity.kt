@@ -12,5 +12,8 @@ class MainActivity : AppCompatActivity() {
             this,
             findViewById(R.id.bottom_navigation)
         )
+        when (savedInstanceState) {
+            null -> BottomNavigationViewHelper.init()
+        }
     }
 }
