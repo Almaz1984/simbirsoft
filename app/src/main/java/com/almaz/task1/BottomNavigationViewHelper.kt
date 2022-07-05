@@ -11,6 +11,7 @@ import com.almaz.task1.ui.help.HelpFragment
 import com.almaz.task1.ui.news.NewsFragment
 import com.almaz.task1.ui.profile.ProfileFragment
 import com.almaz.task1.ui.search.SearchFragment
+import com.google.android.material.badge.BadgeDrawable
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class BottomNavigationViewHelper {
@@ -19,6 +20,7 @@ class BottomNavigationViewHelper {
 
         private lateinit var bottomNavigationView: BottomNavigationView
         private lateinit var fragmentManager: FragmentManager
+        private lateinit var badge: BadgeDrawable
         private val fragments = mapOf(
             R.id.navigation_profile to ProfileFragment::class.java,
             R.id.navigation_search to SearchFragment::class.java,
@@ -34,10 +36,18 @@ class BottomNavigationViewHelper {
             this.bottomNavigationView = bottomNavigationView.apply {
                 setOnItemSelectedListener(itemSelectedListener())
             }
+            badge = bottomNavigationView.getOrCreateBadge(R.id.navigation_news)
+            badge.isVisible = false
         }
 
         fun init() {
+            bottomNavigationView.visibility = VISIBLE
             bottomNavigationView.selectedItemId = R.id.navigation_help
+        }
+
+        fun setNewsBadge(count: Int) {
+            badge.isVisible = count > 0
+            badge.number = count
         }
 
         private fun itemSelectedListener() = { menuItem: MenuItem ->
