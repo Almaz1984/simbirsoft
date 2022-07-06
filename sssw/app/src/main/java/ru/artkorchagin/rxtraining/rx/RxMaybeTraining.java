@@ -21,8 +21,11 @@ public class RxMaybeTraining {
      * либо не эммитит ничего, если {@code value} отрицательное
      */
     public Maybe<Integer> positiveOrEmpty(Integer value) {
-
-        return Maybe.just(value).filter(it -> it > 0);
+        return Maybe.create(emitter -> {
+                    if (value > 0) emitter.onSuccess(value);
+                    else emitter.onComplete();
+                }
+        );
     }
 
     /**
@@ -33,7 +36,7 @@ public class RxMaybeTraining {
      * положительное число, иначе не эммитит ничего
      */
     Maybe<Integer> positiveOrEmpty(Single<Integer> valueSingle) {
-        return  valueSingle.filter(it -> it > 0);
+        return valueSingle.filter(it -> it > 0);
     }
 
     /**

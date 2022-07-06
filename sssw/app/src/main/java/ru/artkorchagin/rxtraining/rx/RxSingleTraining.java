@@ -24,10 +24,13 @@ public class RxSingleTraining {
      * либо ошибку {@link ExpectedException} если оно отрицательное
      */
     public Single<Integer> onlyOneElement(Integer value) {
-
-        return Single.just(value)
-                .filter(it -> it > 0)
-                .switchIfEmpty(Single.error(new ExpectedException()));
+        return Single.create(emitter -> {
+            if (value > 0) {
+                emitter.onSuccess(value);
+            } else {
+                emitter.onError(new ExpectedException());
+            }
+        });
     }
 
     /**

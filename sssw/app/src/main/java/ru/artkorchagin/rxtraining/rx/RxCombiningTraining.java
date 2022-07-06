@@ -41,7 +41,7 @@ public class RxCombiningTraining {
      */
     public Observable<List<String>> requestItems(Observable<String> searchObservable,
                                                  Observable<Integer> categoryObservable) {
-        return Observable.combineLatest(searchObservable,categoryObservable, this::searchItems);
+        return Observable.combineLatest(searchObservable, categoryObservable, this::searchItems);
     }
 
     /**
