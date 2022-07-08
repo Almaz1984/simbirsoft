@@ -4,7 +4,6 @@ package com.almaz.task1.ui.news
 
 import android.content.Context
 import android.content.SharedPreferences
-import android.os.AsyncTask
 import android.os.Bundle
 import android.os.Parcelable
 import android.util.Log
@@ -23,13 +22,11 @@ import com.almaz.task1.data.model.News
 import com.almaz.task1.data.model.NewsFilter
 import com.almaz.task1.ui.news.adapters.news.NewsAdapter
 import com.almaz.task1.utils.JsonHelper
-import com.almaz.task1.utils.NewsAsyncTask
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.PublishSubject
-import java.lang.ref.WeakReference
 
 class NewsFragment : Fragment() {
     private lateinit var progressBar: View
@@ -38,23 +35,10 @@ class NewsFragment : Fragment() {
     private lateinit var preferences: SharedPreferences
     private var currentNewsFilters: MutableList<NewsFilter> = mutableListOf()
     private var newsList: List<News>? = null
-    private var asyncTask: NewsAsyncTask? = null
 
     private val subject = PublishSubject.create<Long>()
     private var disposable: Disposable? = null
     private val readNewsIds: MutableSet<Long> = mutableSetOf()
-
-//    private val newsReceiver = object : BroadcastReceiver() {
-//        override fun onReceive(context: Context?, intent: Intent?) {
-//            when (intent?.action) {
-//                NewsIntentService.ACTION_NEWS_UPDATE -> {
-//                    newsList =
-//                        intent.getParcelableArrayListExtra(NewsIntentService.NEWS_KEY_OUT)
-//                    newsList?.let { updateNews(it) }
-//                }
-//            }
-//        }
-//    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -75,9 +59,6 @@ class NewsFragment : Fragment() {
         }
 
         when (newsList) {
-//            null -> initAsyncTask()
-//            null -> initService()
-//            null -> initExecutor()
             null -> initRx()
             else -> updateNews(newsList)
         }
@@ -94,11 +75,6 @@ class NewsFragment : Fragment() {
         super.onStop()
     }
 
-//    override fun onStart() {
-//        super.onStart()
-//        registerReceiver()
-//    }
-
     override fun onSaveInstanceState(outState: Bundle) {
         Log.d(NEWS_FRAGMENT_TAG, "onSaveInstanceState")
         super.onSaveInstanceState(outState)
@@ -106,11 +82,6 @@ class NewsFragment : Fragment() {
             outState.putParcelableArrayList(NEWS_KEY, newsList as ArrayList<out Parcelable>)
         }
     }
-
-//    override fun onStop() {
-//        super.onStop()
-//        context?.unregisterReceiver(newsReceiver)
-//    }
 
     private fun setupView(view: View) {
         progressBar = view.findViewById(R.id.news_progress_bar)
@@ -173,36 +144,17 @@ class NewsFragment : Fragment() {
         }
     }
 
-    private fun initAsyncTask() {
-        asyncTask = NewsAsyncTask.getInstance(WeakReference(this))
-        when (asyncTask?.status) {
-            AsyncTask.Status.PENDING -> asyncTask?.execute()
-            else -> return
+    private fun initRx() {
+        getNewsObservable().subscribe { newsList ->
+            updateNews(newsList)
         }
     }
 
-    private fun initRx() {
-        val newsList: MutableList<News> = mutableListOf()
-
-        getNewsObservable()
-            .subscribe({
-                newsList.add(it)
-            }, {
-                Log.d(NEWS_FRAGMENT_TAG, "Error occurred: ${it.message}")
-            }, {
-                updateNews(newsList)
-                Log.d(NEWS_FRAGMENT_TAG, "News list updated")
-                Log.d(NEWS_FRAGMENT_TAG, "Current thread: ${Thread.currentThread().name}")
-            })
-    }
-
     private fun getNewsObservable() =
-        Observable.fromIterable(JsonHelper.getNews(context as FragmentActivity))
-            .subscribeOn(Schedulers.newThread())
-            .doOnNext {
-                Log.d(NEWS_FRAGMENT_TAG, "News received: ${it.id}")
-                Log.d(NEWS_FRAGMENT_TAG, "Current thread: ${Thread.currentThread().name}")
-            }
+        Observable.just(
+            JsonHelper.getNews(context as FragmentActivity)
+        )
+            .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
 
     private fun rxZipTest() {
@@ -273,25 +225,6 @@ class NewsFragment : Fragment() {
             .subscribe()
     }
 
-//    private fun initExecutor() {
-//        newsTaskExecutor = NewsTaskExecutor.getInstance(WeakReference(this))
-//        newsTaskExecutor?.execute()
-//    }
-//
-//    private fun initService() {
-//        Intent(activity, NewsIntentService::class.java).also {
-//            activity?.startService(it)
-//        }
-//    }
-
-//    private fun registerReceiver() {
-//        val intentFilter = IntentFilter(
-//            NewsIntentService.ACTION_NEWS_UPDATE
-//        )
-//        intentFilter.addCategory(Intent.CATEGORY_DEFAULT)
-//        context?.registerReceiver(newsReceiver, intentFilter)
-//    }
-
     fun updateNews(newsList: List<News>?) {
         this.newsList = newsList
         newsList?.let {
@@ -304,7 +237,6 @@ class NewsFragment : Fragment() {
             updateBadge(notReadNewsCount)
         }
         showNews()
-//        newsTaskExecutor?.shutdown()
     }
 
     private fun updateBadge(notReadNewsCount: Int) {

@@ -18,8 +18,7 @@ import java.util.concurrent.TimeUnit
 
 class AuthorizationFragment : Fragment() {
 
-    private var _binding: FragmentAuthorizationBinding? = null
-    private val binding get() = _binding!!
+    private lateinit var binding: FragmentAuthorizationBinding
     private lateinit var credentialsDisposable: Disposable
 
     override fun onCreateView(
@@ -27,7 +26,7 @@ class AuthorizationFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentAuthorizationBinding.inflate(inflater, container, false)
+        binding = FragmentAuthorizationBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -42,11 +41,6 @@ class AuthorizationFragment : Fragment() {
     override fun onStop() {
         super.onStop()
         credentialsDisposable.dispose()
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 
     private fun setupAuthorizationToolbar() {

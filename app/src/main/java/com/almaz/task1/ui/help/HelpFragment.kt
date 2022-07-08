@@ -2,7 +2,6 @@
 
 package com.almaz.task1.ui.help
 
-import android.os.AsyncTask
 import android.os.Bundle
 import android.os.Parcelable
 import android.util.Log
@@ -18,12 +17,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.almaz.task1.R
 import com.almaz.task1.data.model.HelpCategory
 import com.almaz.task1.ui.help.adapters.HelpAdapter
-import com.almaz.task1.utils.CategoriesAsyncTask
 import com.almaz.task1.utils.JsonHelper
+import com.almaz.task1.utils.extensions.subscribe
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
-import java.lang.ref.WeakReference
 
 class HelpFragment : Fragment() {
 
@@ -31,20 +29,6 @@ class HelpFragment : Fragment() {
     private lateinit var categoriesRecyclerView: RecyclerView
     private val helpAdapter = HelpAdapter()
     private var categories: List<HelpCategory>? = null
-    private var categoriesAsyncTask: CategoriesAsyncTask? = null
-//    private var categoriesTaskExecutor: CategoriesTaskExecutor? = null
-
-//    private val categoriesReceiver = object : BroadcastReceiver() {
-//        override fun onReceive(context: Context?, intent: Intent?) {
-//            when (intent?.action) {
-//                CategoriesIntentService.ACTION_CATEGORIES_UPDATE -> {
-//                    categories =
-//                        intent.getParcelableArrayListExtra(CategoriesIntentService.CATEGORIES_KEY_OUT)
-//                    categories?.let { updateCategories(it) }
-//                }
-//            }
-//        }
-//    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -64,37 +48,30 @@ class HelpFragment : Fragment() {
         }
 
         when (categories) {
-//            null -> initAsyncTask()
-//            null -> initService()
-//            null -> initExecutor()
             null -> initRx()
             else -> updateCategories(categories)
         }
     }
 
     private fun initRx() {
-        val categories: MutableList<HelpCategory> = mutableListOf()
-
-        getNewsObservable()
-            .subscribe({
-                categories.add(it)
-            }, {
-                Log.d(HELP_FRAGMENT_TAG, "Error occurred: ${it.message}")
-            }, {
-                updateCategories(categories)
-            })
+        getHelpCategoriesObservable().subscribe(
+            onNext = {
+                updateCategories(it)
+                Log.d(HELP_FRAGMENT_TAG, "OnNext Current thread: ${Thread.currentThread().name}")
+            },
+            onError = { Log.d(HELP_FRAGMENT_TAG, "Error occurred: ${it.message}") },
+            onComplete = {
+                Log.d(HELP_FRAGMENT_TAG, "OnComplete Current thread: ${Thread.currentThread().name}")
+            }
+        )
     }
 
-    private fun getNewsObservable() =
-        Observable.fromIterable(JsonHelper.getCategories(context as FragmentActivity))
-            .doOnNext { Thread.sleep(SLEEP_TIME) }
+    private fun getHelpCategoriesObservable() =
+        Observable.just(
+            JsonHelper.getCategories(context as FragmentActivity)
+        )
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-
-//    override fun onStart() {
-//        super.onStart()
-//        registerReceiver()
-//    }
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
@@ -105,11 +82,6 @@ class HelpFragment : Fragment() {
             )
         }
     }
-
-//    override fun onStop() {
-//        super.onStop()
-//        context?.unregisterReceiver(categoriesReceiver)
-//    }
 
     private fun setupView(view: View) {
         progressBar = view.findViewById(R.id.help_category_progress_bar)
@@ -125,38 +97,10 @@ class HelpFragment : Fragment() {
         }
     }
 
-    private fun initAsyncTask() {
-        categoriesAsyncTask = CategoriesAsyncTask.getInstance(WeakReference(this))
-        when (categoriesAsyncTask?.status) {
-            AsyncTask.Status.PENDING -> categoriesAsyncTask?.execute()
-            else -> return
-        }
-    }
-
-//    private fun initExecutor() {
-//        categoriesTaskExecutor = CategoriesTaskExecutor.getInstance(WeakReference(this))
-//        categoriesTaskExecutor?.execute()
-//    }
-
-//    private fun initService() {
-//        Intent(activity, NewsIntentService::class.java).also {
-//            activity?.startService(it)
-//        }
-//    }
-
-//        private fun registerReceiver() {
-//        val intentFilter = IntentFilter(
-//            CategoriesIntentService.ACTION_UPDATE
-//        )
-//        intentFilter.addCategory(Intent.CATEGORY_DEFAULT)
-//        context?.registerReceiver(categoriesReceiver, intentFilter)
-//    }
-
     fun updateCategories(categories: List<HelpCategory>?) {
         categories?.let { helpAdapter.updateItems(categories) }
         this.categories = categories
         showCategories()
-//        categoriesTaskExecutor?.shutdown()
     }
 
     private fun showCategories() {
@@ -166,7 +110,6 @@ class HelpFragment : Fragment() {
 
     companion object {
         private const val SPAN_COUNT = 2
-        private const val SLEEP_TIME = 1000L
         private const val CATEGORIES_KEY = "categories"
         private const val HELP_FRAGMENT_TAG = "help_fragment"
     }
