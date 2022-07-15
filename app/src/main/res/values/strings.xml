@@ -58,4 +58,17 @@
     <string name="news_detail_button_tools_text">Проф.\nпомощь</string>
     <string name="news_detail_button_coins_text">Помочь\nденьгами</string>
     <string name="news_detail_email_text">У вас есть вопросы?</string>
+    <string name="authorization_toolbar_text">Авторизация</string>
+    <string name="oauth_authorization_description_text">Для участия в мероприятиях войдите в приложение через социальные сети</string>
+    <string name="app_authorization_description_text">Или авторизуйтесь через приложение</string>
+    <string name="mail_info_text">E-mail</string>
+    <string name="input_mail">Введите e-mail</string>
+    <string name="password_info_text">Пароль</string>
+    <string name="input_password">Введите пароль</string>
+    <string name="forgot_password"><u>Забыли пароль?</u></string>
+    <string name="sign_up"><u>Регистрация</u></string>
+    <string name="log_in">ВОЙТИ</string>
+    <string name="search_plug_example_text"><u>мастер-класс, помощь</u></string>
+    <string name="empty_state_example_text">Например,</string>
+    <string name="empty_state_title">Напишите в строке поиска название\n мероприятия или ключевые слова.</string>
 </resources>

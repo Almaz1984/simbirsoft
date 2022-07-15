@@ -3,7 +3,10 @@ package com.almaz.task1.ui.search
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.view.ViewGroup
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -17,6 +20,7 @@ class ItemViewPagerFragment : Fragment() {
     private val searchResultList = Repository.getSearchResults()
     private lateinit var searchAdapter: SearchAdapter
     private lateinit var recyclerView: RecyclerView
+    private lateinit var emptyStateView: ConstraintLayout
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -30,7 +34,6 @@ class ItemViewPagerFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         searchAdapter = SearchAdapter()
-        searchAdapter.updateItems(searchResultList)
 
         recyclerView = view.findViewById<RecyclerView>(R.id.rv_search_result).apply {
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
@@ -42,11 +45,23 @@ class ItemViewPagerFragment : Fragment() {
             )
             adapter = searchAdapter
         }
+
+        emptyStateView = view.findViewById(R.id.empty_state_view)
     }
 
-    override fun onPause() {
-        super.onPause()
-        searchResultList.shuffle()
-        searchAdapter.updateItems(searchResultList)
+    fun applyQuery(query: String) {
+        when (query.isEmpty()) {
+            true -> emptyStateView.visibility = VISIBLE
+            false -> emptyStateView.visibility = GONE
+        }
+
+        searchAdapter.updateItems(
+            searchResultList.filter { searchResult ->
+                searchResult.result.contains(
+                    query,
+                    true
+                )
+            }
+        )
     }
 }

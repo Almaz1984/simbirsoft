@@ -4,7 +4,6 @@ package com.almaz.task1.ui.news
 
 import android.content.Context
 import android.content.SharedPreferences
-import android.os.AsyncTask
 import android.os.Bundle
 import android.os.Parcelable
 import android.util.Log
@@ -17,13 +16,17 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.almaz.task1.BottomNavigationViewHelper
 import com.almaz.task1.R
 import com.almaz.task1.data.model.News
 import com.almaz.task1.data.model.NewsFilter
 import com.almaz.task1.ui.news.adapters.news.NewsAdapter
 import com.almaz.task1.utils.JsonHelper
-import com.almaz.task1.utils.NewsAsyncTask
-import java.lang.ref.WeakReference
+import io.reactivex.Observable
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.Disposable
+import io.reactivex.schedulers.Schedulers
+import io.reactivex.subjects.PublishSubject
 
 class NewsFragment : Fragment() {
     private lateinit var progressBar: View
@@ -32,20 +35,10 @@ class NewsFragment : Fragment() {
     private lateinit var preferences: SharedPreferences
     private var currentNewsFilters: MutableList<NewsFilter> = mutableListOf()
     private var newsList: List<News>? = null
-    private var asyncTask: NewsAsyncTask? = null
-//    private var newsTaskExecutor: NewsTaskExecutor? = null
 
-//    private val newsReceiver = object : BroadcastReceiver() {
-//        override fun onReceive(context: Context?, intent: Intent?) {
-//            when (intent?.action) {
-//                NewsIntentService.ACTION_NEWS_UPDATE -> {
-//                    newsList =
-//                        intent.getParcelableArrayListExtra(NewsIntentService.NEWS_KEY_OUT)
-//                    newsList?.let { updateNews(it) }
-//                }
-//            }
-//        }
-//    }
+    private val subject = PublishSubject.create<Long>()
+    private var disposable: Disposable? = null
+    private val readNewsIds: MutableSet<Long> = mutableSetOf()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -66,30 +59,29 @@ class NewsFragment : Fragment() {
         }
 
         when (newsList) {
-            null -> initAsyncTask()
-//            null -> initService()
-//            null -> initExecutor()
+            null -> initRx()
             else -> updateNews(newsList)
         }
+
+        disposable = subject.subscribe {
+            readNewsIds.add(it)
+        }
+
+        rxZipTest()
     }
 
-//    override fun onStart() {
-//        super.onStart()
-//        registerReceiver()
-//    }
+    override fun onStop() {
+        disposable?.dispose()
+        super.onStop()
+    }
 
     override fun onSaveInstanceState(outState: Bundle) {
-        Log.d("TAG", "onSaveInstanceState")
+        Log.d(NEWS_FRAGMENT_TAG, "onSaveInstanceState")
         super.onSaveInstanceState(outState)
         newsList?.let {
             outState.putParcelableArrayList(NEWS_KEY, newsList as ArrayList<out Parcelable>)
         }
     }
-
-//    override fun onStop() {
-//        super.onStop()
-//        context?.unregisterReceiver(newsReceiver)
-//    }
 
     private fun setupView(view: View) {
         progressBar = view.findViewById(R.id.news_progress_bar)
@@ -100,6 +92,7 @@ class NewsFragment : Fragment() {
     private fun setupRecyclerView(view: View) {
         val newsItemClickListener =
             { news: News ->
+                subject.onNext(news.id)
                 showNewsDetailFragment(news)
             }
         newsAdapter = NewsAdapter(newsItemClickListener)
@@ -151,41 +144,103 @@ class NewsFragment : Fragment() {
         }
     }
 
-    private fun initAsyncTask() {
-        asyncTask = NewsAsyncTask.getInstance(WeakReference(this))
-        when (asyncTask?.status) {
-            AsyncTask.Status.PENDING -> asyncTask?.execute()
-            else -> return
+    private fun initRx() {
+        getNewsObservable().subscribe { newsList ->
+            updateNews(newsList)
         }
     }
 
-//    private fun initExecutor() {
-//        newsTaskExecutor = NewsTaskExecutor.getInstance(WeakReference(this))
-//        newsTaskExecutor?.execute()
-//    }
-//
-//    private fun initService() {
-//        Intent(activity, NewsIntentService::class.java).also {
-//            activity?.startService(it)
-//        }
-//    }
+    private fun getNewsObservable() =
+        Observable.just(
+            JsonHelper.getNews(context as FragmentActivity)
+        )
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
 
-//    private fun registerReceiver() {
-//        val intentFilter = IntentFilter(
-//            NewsIntentService.ACTION_NEWS_UPDATE
-//        )
-//        intentFilter.addCategory(Intent.CATEGORY_DEFAULT)
-//        context?.registerReceiver(newsReceiver, intentFilter)
-//    }
+    private fun rxZipTest() {
+        Log.d(NEWS_FRAGMENT_TAG, "rxZipTest:")
+
+        val observable1 = Observable.fromIterable(JsonHelper.getNews(context as FragmentActivity))
+            .map { it.id }
+            .subscribeOn(Schedulers.newThread())
+            .doOnNext {
+                Log.d(
+                    NEWS_FRAGMENT_TAG,
+                    "Observable 1 current thread: ${Thread.currentThread().name}"
+                )
+            }
+            .observeOn(AndroidSchedulers.mainThread())
+
+        val observable2 = Observable.just("First", "Two", "Three", "Four", "Five")
+            .subscribeOn(Schedulers.newThread())
+            .doOnNext {
+                Log.d(
+                    NEWS_FRAGMENT_TAG,
+                    "Observable 2 current thread: ${Thread.currentThread().name}"
+                )
+            }
+            .observeOn(AndroidSchedulers.mainThread())
+
+        Observable.zip(observable1, observable2) { t1, t2 -> "$t1 $t2" }
+            .subscribeOn(Schedulers.newThread())
+            .doOnNext {
+                Log.d(
+                    NEWS_FRAGMENT_TAG,
+                    "Observable zip current thread: ${Thread.currentThread().name}"
+                )
+            }
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(
+                { Log.d(NEWS_FRAGMENT_TAG, "Zipped: $it") },
+                { Log.d(NEWS_FRAGMENT_TAG, "Error occurred: ${it.message}") },
+                { Log.d(NEWS_FRAGMENT_TAG, "Completed") }
+            )
+
+        val observable3 = Observable.fromIterable(JsonHelper.getNews(context as FragmentActivity))
+            .map {
+                it.id
+            }
+            .subscribeOn(Schedulers.newThread())
+            .subscribeOn(Schedulers.io())
+            .doOnNext {
+                Log.d(
+                    NEWS_FRAGMENT_TAG,
+                    "Observable 3 current thread 1: ${Thread.currentThread().name} it: $it"
+                )
+            }
+            .observeOn(Schedulers.newThread())
+            .doOnNext {
+                Log.d(
+                    NEWS_FRAGMENT_TAG,
+                    "Observable 3 current thread 2: ${Thread.currentThread().name} it: $it"
+                )
+            }
+            .observeOn(AndroidSchedulers.mainThread())
+            .doOnNext {
+                Log.d(
+                    NEWS_FRAGMENT_TAG,
+                    "Observable 3 current thread 3: ${Thread.currentThread().name} it: $it"
+                )
+            }
+            .subscribe()
+    }
 
     fun updateNews(newsList: List<News>?) {
         this.newsList = newsList
         newsList?.let {
             val filteredNewsList = filterNews(it)
             newsAdapter.submitList(filteredNewsList)
+
+            val notReadNewsCount = filteredNewsList
+                .filterNot { news -> readNewsIds.contains(news.id) }
+                .size
+            updateBadge(notReadNewsCount)
         }
         showNews()
-//        newsTaskExecutor?.shutdown()
+    }
+
+    private fun updateBadge(notReadNewsCount: Int) {
+        BottomNavigationViewHelper.setNewsBadge(notReadNewsCount)
     }
 
     private fun filterNews(newsList: List<News>): List<News> {
@@ -204,5 +259,6 @@ class NewsFragment : Fragment() {
 
     companion object {
         private const val NEWS_KEY = "news"
+        private const val NEWS_FRAGMENT_TAG = "NewsFragment"
     }
 }
