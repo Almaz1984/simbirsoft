@@ -20,9 +20,10 @@ import com.almaz.task1.BottomNavigationViewHelper
 import com.almaz.task1.R
 import com.almaz.task1.data.model.News
 import com.almaz.task1.data.model.NewsFilter
+import com.almaz.task1.data.repository.Repository
 import com.almaz.task1.ui.news.adapters.news.NewsAdapter
 import com.almaz.task1.utils.JsonHelper
-import io.reactivex.Observable
+import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
@@ -66,8 +67,6 @@ class NewsFragment : Fragment() {
         disposable = subject.subscribe {
             readNewsIds.add(it)
         }
-
-        rxZipTest()
     }
 
     override fun onStop() {
@@ -151,79 +150,13 @@ class NewsFragment : Fragment() {
     }
 
     private fun getNewsObservable() =
-        Observable.just(
-            JsonHelper.getNews(context as FragmentActivity)
-        )
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-
-    private fun rxZipTest() {
-        Log.d(NEWS_FRAGMENT_TAG, "rxZipTest:")
-
-        val observable1 = Observable.fromIterable(JsonHelper.getNews(context as FragmentActivity))
-            .map { it.id }
-            .subscribeOn(Schedulers.newThread())
-            .doOnNext {
-                Log.d(
-                    NEWS_FRAGMENT_TAG,
-                    "Observable 1 current thread: ${Thread.currentThread().name}"
-                )
-            }
-            .observeOn(AndroidSchedulers.mainThread())
-
-        val observable2 = Observable.just("First", "Two", "Three", "Four", "Five")
-            .subscribeOn(Schedulers.newThread())
-            .doOnNext {
-                Log.d(
-                    NEWS_FRAGMENT_TAG,
-                    "Observable 2 current thread: ${Thread.currentThread().name}"
-                )
-            }
-            .observeOn(AndroidSchedulers.mainThread())
-
-        Observable.zip(observable1, observable2) { t1, t2 -> "$t1 $t2" }
-            .subscribeOn(Schedulers.newThread())
-            .doOnNext {
-                Log.d(
-                    NEWS_FRAGMENT_TAG,
-                    "Observable zip current thread: ${Thread.currentThread().name}"
-                )
-            }
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(
-                { Log.d(NEWS_FRAGMENT_TAG, "Zipped: $it") },
-                { Log.d(NEWS_FRAGMENT_TAG, "Error occurred: ${it.message}") },
-                { Log.d(NEWS_FRAGMENT_TAG, "Completed") }
+        Repository.loadNews().onErrorResumeNext {
+            Single.just(
+                JsonHelper.getNews(context as FragmentActivity)
             )
-
-        val observable3 = Observable.fromIterable(JsonHelper.getNews(context as FragmentActivity))
-            .map {
-                it.id
-            }
-            .subscribeOn(Schedulers.newThread())
+        }
             .subscribeOn(Schedulers.io())
-            .doOnNext {
-                Log.d(
-                    NEWS_FRAGMENT_TAG,
-                    "Observable 3 current thread 1: ${Thread.currentThread().name} it: $it"
-                )
-            }
-            .observeOn(Schedulers.newThread())
-            .doOnNext {
-                Log.d(
-                    NEWS_FRAGMENT_TAG,
-                    "Observable 3 current thread 2: ${Thread.currentThread().name} it: $it"
-                )
-            }
             .observeOn(AndroidSchedulers.mainThread())
-            .doOnNext {
-                Log.d(
-                    NEWS_FRAGMENT_TAG,
-                    "Observable 3 current thread 3: ${Thread.currentThread().name} it: $it"
-                )
-            }
-            .subscribe()
-    }
 
     fun updateNews(newsList: List<News>?) {
         this.newsList = newsList
