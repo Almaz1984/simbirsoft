@@ -1,20 +1,30 @@
 package com.almaz.task1.ui.profile.adapters.friends
 
 import android.annotation.SuppressLint
-import android.view.View
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.almaz.task1.R
 import com.almaz.task1.data.model.Friend
+import com.almaz.task1.databinding.ItemFriendsBinding
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 
-class FriendsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+class FriendsViewHolder(
+    private val binding: ItemFriendsBinding
+) : RecyclerView.ViewHolder(binding.root) {
 
     @SuppressLint("SetTextI18n", "UseCompatLoadingForDrawables")
     fun bind(friend: Friend) {
-        val friendName: TextView = itemView.findViewById(R.id.text_view_name_friend)
-        val photo: ImageView = itemView.findViewById(R.id.image_view_avatar_profile)
-        friendName.text = friend.name
-        photo.setImageDrawable(itemView.context.getDrawable(friend.avatar))
+        apply {
+            binding.apply {
+                Glide.with(imageViewAvatarProfile)
+                    .load(friend.avatar)
+                    .placeholder(R.drawable.ic_update)
+                    .error(R.drawable.ic_broken)
+                    .diskCacheStrategy(DiskCacheStrategy.NONE)
+                    .into(imageViewAvatarProfile)
+
+                textViewNameFriend.text = friend.name
+            }
+        }
     }
 }

@@ -4,7 +4,6 @@ package com.almaz.task1.ui.help
 
 import android.os.Bundle
 import android.os.Parcelable
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.GONE
@@ -16,10 +15,10 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.almaz.task1.R
 import com.almaz.task1.data.model.HelpCategory
+import com.almaz.task1.data.repository.Repository
 import com.almaz.task1.ui.help.adapters.HelpAdapter
 import com.almaz.task1.utils.JsonHelper
-import com.almaz.task1.utils.extensions.subscribe
-import io.reactivex.Observable
+import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
@@ -54,21 +53,16 @@ class HelpFragment : Fragment() {
     }
 
     private fun initRx() {
-        getHelpCategoriesObservable().subscribe(
-            onNext = {
-                updateCategories(it)
-                Log.d(HELP_FRAGMENT_TAG, "OnNext Current thread: ${Thread.currentThread().name}")
-            },
-            onError = { Log.d(HELP_FRAGMENT_TAG, "Error occurred: ${it.message}") },
-            onComplete = {
-                Log.d(HELP_FRAGMENT_TAG, "OnComplete Current thread: ${Thread.currentThread().name}")
-            }
-        )
+        getHelpCategoriesObservable().subscribe { categories ->
+            updateCategories(categories)
+        }
     }
 
     private fun getHelpCategoriesObservable() =
-        Observable.just(
-            JsonHelper.getCategories(context as FragmentActivity)
+        Repository.loadHelpCategories().onErrorResumeNext(
+            Single.just(
+                JsonHelper.getCategories(context as FragmentActivity)
+            )
         )
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
@@ -111,6 +105,5 @@ class HelpFragment : Fragment() {
     companion object {
         private const val SPAN_COUNT = 2
         private const val CATEGORIES_KEY = "categories"
-        private const val HELP_FRAGMENT_TAG = "help_fragment"
     }
 }
