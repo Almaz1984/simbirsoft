@@ -1,13 +1,13 @@
 package com.almaz.task1.data.repository
 
 import com.almaz.task1.R
-import com.almaz.task1.data.api.Retrofit
+import com.almaz.task1.data.api.NetworkService
 import com.almaz.task1.data.model.Friend
 import com.almaz.task1.data.model.SearchResult
 
 object Repository {
 
-    private val api = Retrofit.getApi()
+    private val api = NetworkService.getApi()
 
     fun getFriends() = mutableListOf(
         Friend(
